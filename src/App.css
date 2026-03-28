@@ -1,0 +1,13 @@
+.app {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.app.light-mode {
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+.app.dark-mode {
+  background-color: #0a0e27;
+  color: #f0f0f0;
+}

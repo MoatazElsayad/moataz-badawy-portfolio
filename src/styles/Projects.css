@@ -1,0 +1,238 @@
+.projects {
+  padding: 5rem 0;
+  background: var(--light-bg);
+}
+
+body[data-theme="dark"] .projects {
+  background: var(--dark-bg);
+}
+
+.project-filters {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+  animation: fadeInUp 0.6s ease;
+}
+
+.filter-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--border-color);
+  background: transparent;
+  color: var(--dark-text);
+  border-radius: 2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.95rem;
+}
+
+body[data-theme="dark"] .filter-btn {
+  color: var(--light-text);
+  border-color: var(--dark-border);
+}
+
+.filter-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+  border-color: transparent;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  animation: fadeInUp 0.8s ease;
+}
+
+.project-card {
+  background: var(--light-card);
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-sm);
+  height: 100%;
+}
+
+body[data-theme="dark"] .project-card {
+  background: var(--dark-card);
+  border-color: var(--dark-border);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, 
+    rgba(0, 102, 255, 0.1), 
+    rgba(0, 212, 255, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  transition: var(--transition);
+}
+
+.project-card:hover .project-image {
+  background: linear-gradient(135deg, 
+    rgba(0, 102, 255, 0.2), 
+    rgba(0, 212, 255, 0.2));
+  transform: scale(1.05);
+}
+
+.project-content {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+  color: var(--dark-text);
+}
+
+body[data-theme="dark"] .project-title {
+  color: var(--light-text);
+}
+
+.project-description {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.project-technologies {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tech-tag {
+  background: rgba(0, 102, 255, 0.15);
+  color: var(--primary-color);
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(0, 102, 255, 0.3);
+}
+
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.project-link {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  border: 2px solid transparent;
+}
+
+.github-link {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+}
+
+.github-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 102, 255, 0.3);
+}
+
+.live-link {
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  background: transparent;
+}
+
+.live-link:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .projects {
+    padding: 3rem 0;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .project-image {
+    height: 150px;
+    font-size: 3rem;
+  }
+
+  .project-content {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-filters {
+    gap: 0.75rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .project-image {
+    height: 120px;
+    font-size: 2.5rem;
+  }
+
+  .project-content {
+    padding: 1rem;
+  }
+
+  .project-title {
+    font-size: 1.1rem;
+  }
+
+  .project-links {
+    flex-direction: column;
+  }
+
+  .project-link {
+    padding: 0.6rem 0.8rem;
+  }
+}

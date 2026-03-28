@@ -1,0 +1,129 @@
+.footer {
+  background: var(--dark-text);
+  color: var(--light-text);
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+}
+
+body[data-theme="dark"] .footer {
+  background: #0a0a0a;
+}
+
+.footer .container {
+  margin-bottom: 2rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3,
+.footer-section h4 {
+  color: var(--light-text);
+  margin-bottom: 1rem;
+}
+
+.footer-section p {
+  opacity: 0.8;
+  font-size: 0.95rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-section ul li a {
+  color: rgba(255, 255, 255, 0.8);
+  transition: var(--transition);
+}
+
+.footer-section ul li a:hover {
+  color: var(--secondary-color);
+  margin-left: 5px;
+}
+
+.footer-social {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-social a {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 102, 255, 0.2);
+  border-radius: 50%;
+  color: var(--secondary-color);
+  transition: var(--transition);
+  border: 1px solid transparent;
+}
+
+.footer-social a:hover {
+  background: var(--primary-color);
+  color: white;
+  border-color: var(--primary-color);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 1.5rem;
+  text-align: center;
+  opacity: 0.8;
+  font-size: 0.9rem;
+}
+
+.footer-bottom p {
+  margin: 0.5rem 0;
+}
+
+.heart {
+  display: inline-block;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer {
+    padding: 2rem 0 1rem;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .footer-section h3,
+  .footer-section h4 {
+    font-size: 1.1rem;
+  }
+
+  .footer-social {
+    justify-content: center;
+  }
+
+  .footer-bottom {
+    padding-top: 1rem;
+  }
+}
