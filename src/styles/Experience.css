@@ -3,7 +3,7 @@
   background: linear-gradient(180deg, rgba(0, 102, 255, 0.05), rgba(0, 212, 255, 0.05));
 }
 
-body[data-theme="dark"] .experience {
+html[data-theme="dark"] .experience {
   background: linear-gradient(180deg, rgba(0, 102, 255, 0.03), rgba(0, 212, 255, 0.03));
 }
 
@@ -55,7 +55,7 @@ body[data-theme="dark"] .experience {
   box-shadow: 0 0 0 3px var(--primary-color);
 }
 
-body[data-theme="dark"] .marker-dot {
+html[data-theme="dark"] .marker-dot {
   border-color: var(--dark-bg);
 }
 
@@ -68,7 +68,7 @@ body[data-theme="dark"] .marker-dot {
   box-shadow: var(--shadow-sm);
 }
 
-body[data-theme="dark"] .timeline-content {
+html[data-theme="dark"] .timeline-content {
   background: var(--dark-card);
   border-color: var(--dark-border);
 }
@@ -103,7 +103,7 @@ body[data-theme="dark"] .timeline-content {
   color: var(--dark-text);
 }
 
-body[data-theme="dark"] .timeline-title {
+html[data-theme="dark"] .timeline-title {
   color: var(--light-text);
 }
 
@@ -149,7 +149,7 @@ body[data-theme="dark"] .timeline-title {
   border: 1px solid var(--border-color);
 }
 
-body[data-theme="dark"] .experience-cta {
+html[data-theme="dark"] .experience-cta {
   background: var(--dark-card);
   border-color: var(--dark-border);
 }

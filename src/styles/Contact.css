@@ -3,7 +3,7 @@
   background: var(--light-bg);
 }
 
-body[data-theme="dark"] .contact {
+html[data-theme="dark"] .contact {
   background: var(--dark-bg);
 }
 
@@ -32,7 +32,7 @@ body[data-theme="dark"] .contact {
   transition: var(--transition);
 }
 
-body[data-theme="dark"] .info-item {
+html[data-theme="dark"] .info-item {
   background: var(--dark-card);
   border-color: var(--dark-border);
 }
@@ -90,7 +90,7 @@ body[data-theme="dark"] .info-item {
   animation: slideInRight 0.8s ease;
 }
 
-body[data-theme="dark"] .contact-form {
+html[data-theme="dark"] .contact-form {
   background: var(--dark-card);
   border-color: var(--dark-border);
 }
@@ -122,7 +122,7 @@ body[data-theme="dark"] .contact-form {
   transition: var(--transition);
 }
 
-body[data-theme="dark"] .form-input {
+html[data-theme="dark"] .form-input {
   background: rgba(0, 102, 255, 0.1);
   color: var(--light-text);
 }
@@ -131,7 +131,7 @@ body[data-theme="dark"] .form-input {
   color: rgba(0, 0, 0, 0.5);
 }
 
-body[data-theme="dark"] .form-input::placeholder {
+html[data-theme="dark"] .form-input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 

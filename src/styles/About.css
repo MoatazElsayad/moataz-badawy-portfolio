@@ -3,7 +3,7 @@
   background: var(--light-bg);
 }
 
-body[data-theme="dark"] .about {
+html[data-theme="dark"] .about {
   background: var(--dark-bg);
 }
 
@@ -38,7 +38,7 @@ body[data-theme="dark"] .about {
   border: 1px solid var(--border-color);
 }
 
-body[data-theme="dark"] .highlight {
+html[data-theme="dark"] .highlight {
   background: var(--dark-card);
   border-color: var(--dark-border);
 }
@@ -173,7 +173,7 @@ body[data-theme="dark"] .highlight {
   animation: fadeInUp 0.8s ease 0.2s both;
 }
 
-body[data-theme="dark"] .philosophy-section {
+html[data-theme="dark"] .philosophy-section {
   background: linear-gradient(135deg, 
     rgba(0, 102, 255, 0.12), 
     rgba(0, 212, 255, 0.12));

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Github, Linkedin, Mail, Heart } from 'lucide-react'
+import { Code, Share2, Mail, Heart } from 'lucide-react'
 import '../styles/Footer.css'
 
 const Footer = () => {
@@ -28,10 +28,10 @@ const Footer = () => {
             <h4>Follow</h4>
             <div className="footer-social">
               <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" title="GitHub">
-                <Github size={20} />
+                <Code size={20} />
               </a>
               <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                <Linkedin size={20} />
+                <Share2 size={20} />
               </a>
               <a href="mailto:moataz.badawy@email.com" title="Email">
                 <Mail size={20} />

@@ -185,10 +185,6 @@ html[data-theme="light"] .nav-menu a {
     border-top: 1px solid rgba(0, 212, 255, 0.1);
   }
 
-  html[data-theme="light"] .nav-menu {
-    background-color: rgba(255, 255, 255, 0.95);
-  }
-
   .nav-menu.active {
     left: 0;
   }
@@ -198,10 +194,6 @@ html[data-theme="light"] .nav-menu a {
     padding: 1.5rem;
     border-bottom: 1px solid rgba(0, 212, 255, 0.1);
     font-size: 1rem;
-  }
-
-  .nav-menu a::after {
-    display: none;
   }
 
   .hamburger {
