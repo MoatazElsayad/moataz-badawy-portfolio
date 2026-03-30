@@ -1,12 +1,12 @@
 .footer {
-  background: var(--dark-text);
+  background: #060d18;
   color: var(--light-text);
   padding: 3rem 0 1rem;
   margin-top: 4rem;
 }
 
 html[data-theme="dark"] .footer {
-  background: #0a0a0a;
+  background: #060d18;
 }
 
 .footer .container {
@@ -61,7 +61,7 @@ html[data-theme="dark"] .footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 102, 255, 0.2);
+  background: rgba(37, 99, 235, 0.12);
   border-radius: 50%;
   color: var(--secondary-color);
   transition: var(--transition);
@@ -73,6 +73,13 @@ html[data-theme="dark"] .footer {
   color: white;
   border-color: var(--primary-color);
   transform: translateY(-3px);
+}
+
+.social-brand-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  object-fit: contain;
+  display: block;
 }
 
 .footer-bottom {

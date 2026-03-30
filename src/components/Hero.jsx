@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Code, Briefcase, Share2, Mail } from 'lucide-react'
+import { Mail } from 'lucide-react'
 import profileImage from '../assets/images/profile.png'
 import '../styles/Hero.css'
+
+const socialIconBase = 'https://cdn.simpleicons.org'
 
 const Hero = () => {
   const canvasRef = useRef(null)
@@ -12,11 +14,10 @@ const Hero = () => {
 
   const phrases = [
     'Computer Engineering Student',
-    'Problem Solver',
-    'Future Tech Founder'
+    'Systems Builder',
+    'Founder-minded Engineer'
   ]
 
-  // Network nodes animation
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -32,7 +33,6 @@ const Hero = () => {
     const nodes = []
     const nodeCount = 12
 
-    // Initialize nodes
     for (let i = 0; i < nodeCount; i++) {
       const angle = (i / nodeCount) * Math.PI * 2
       const distance = 150
@@ -43,8 +43,8 @@ const Hero = () => {
         baseY: canvas.height / 2 + Math.sin(angle) * distance,
         vx: (Math.random() - 0.5) * 0.5,
         vy: (Math.random() - 0.5) * 0.5,
-        angle: angle,
-        distance: distance,
+        angle,
+        distance,
         pulse: Math.random() * Math.PI * 2
       })
     }
@@ -56,15 +56,13 @@ const Hero = () => {
       const centerX = canvas.width / 2
       const centerY = canvas.height / 2
 
-      // Update and draw nodes
-      nodes.forEach((node, i) => {
+      nodes.forEach((node) => {
         node.angle += 0.002
         node.pulse += 0.02
-        
+
         node.x = centerX + Math.cos(node.angle) * (node.distance + Math.sin(node.pulse) * 20)
         node.y = centerY + Math.sin(node.angle) * (node.distance + Math.sin(node.pulse) * 20)
 
-        // Draw connecting lines
         ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 + Math.sin(node.pulse) * 0.1})`
         ctx.lineWidth = 1
         ctx.beginPath()
@@ -72,14 +70,12 @@ const Hero = () => {
         ctx.lineTo(node.x, node.y)
         ctx.stroke()
 
-        // Draw node
         const nodeSize = 2.5 + Math.sin(node.pulse) * 1.5
         ctx.fillStyle = `rgba(0, 102, 255, ${0.5 + Math.cos(node.pulse) * 0.3})`
         ctx.beginPath()
         ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2)
         ctx.fill()
 
-        // Draw glow
         ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 + Math.sin(node.pulse) * 0.1})`
         ctx.lineWidth = 1.5
         ctx.beginPath()
@@ -87,7 +83,6 @@ const Hero = () => {
         ctx.stroke()
       })
 
-      // Draw subtle center circle
       ctx.fillStyle = 'rgba(0, 102, 255, 0.05)'
       ctx.beginPath()
       ctx.arc(centerX, centerY, 100, 0, Math.PI * 2)
@@ -114,9 +109,10 @@ const Hero = () => {
 
   useEffect(() => {
     let timer
+
     const handleType = () => {
       const fullText = phrases[loopNum % phrases.length]
-      
+
       if (isDeleting) {
         setDisplayText(fullText.substring(0, displayText.length - 1))
         setTypingSpeed(50)
@@ -147,7 +143,6 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero">
-      {/* Space background with floating code */}
       <div className="space-bg">
         <canvas id="codeRain" className="code-rain"></canvas>
         <div className="nebula nebula-1"></div>
@@ -159,45 +154,59 @@ const Hero = () => {
         <div className="hero-text">
           <h1 className="hero-name">Moataz Badawy</h1>
           <h2 className="hero-tagline">
-            <span className="tagline-accent">Architecting Intelligent Systems</span> • 
-            <span className="tagline-accent">Solving Impossible Problems</span> • 
-            <span className="tagline-accent">Manifesting Future Technologies</span>
+            <span className="tagline-accent">Systems Engineering</span>{' '}
+            <span className="tagline-separator">/</span>{' '}
+            <span className="tagline-accent">Embedded + Full-Stack</span>{' '}
+            <span className="tagline-separator">/</span>{' '}
+            <span className="tagline-accent">Startup Ambition</span>
           </h2>
           <div className="typing-container">
             <span className="typing-text">{displayText}</span>
             <span className="cursor"></span>
           </div>
           <p className="hero-bio">
-            USAID Scholar @ AUC. Systems thinker. I engineer elegant solutions at the intersection of technology and impact. Obsessed with turning bold ideas into scalable realities and building the next generation of transformative tech companies.
+            USAID Scholar at AUC building across C++, embedded systems, and full-stack applications. I like technically demanding work, practical products, and projects that prove capability through execution.
           </p>
-          
+
           <div className="hero-buttons">
-            <button 
+            <button
               className="btn btn-primary glow-btn"
               onClick={(e) => handleScroll(e, '#projects')}
             >
               <span className="btn-text">View Projects</span>
               <span className="btn-glow"></span>
             </button>
-            <button 
-              className="btn btn-secondary glass-btn"
-              onClick={(e) => handleScroll(e, '#contact')}
-            >
-              <span className="btn-text">Contact Me</span>
-            </button>
+            <a className="btn btn-secondary glass-btn" href="/Moataz_Badawy_CV.pdf" download>
+              <span className="btn-text">Download CV</span>
+            </a>
           </div>
 
           <div className="hero-social">
-            <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" title="GitHub">
-              <Code size={24} />
+            <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+              <img
+                src={`${socialIconBase}/github/ffffff?viewbox=auto&size=24`}
+                alt="GitHub"
+                className="social-brand-icon"
+                loading="lazy"
+              />
             </a>
-            <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-              <Briefcase size={24} />
+            <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+              <img
+                src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=24`}
+                alt="LinkedIn"
+                className="social-brand-icon"
+                loading="lazy"
+              />
             </a>
-            <a href="https://twitter.com/moataz_badawy" target="_blank" rel="noopener noreferrer" title="Twitter">
-              <Share2 size={24} />
+            <a href="https://twitter.com/moataz_badawy" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
+              <img
+                src={`${socialIconBase}/x/ffffff?viewbox=auto&size=24`}
+                alt="X"
+                className="social-brand-icon"
+                loading="lazy"
+              />
             </a>
-            <a href="mailto:moataz.badawy@email.com" title="Email">
+            <a href="mailto:moataz.badawy@email.com" title="Email" aria-label="Email">
               <Mail size={24} />
             </a>
           </div>
@@ -205,11 +214,10 @@ const Hero = () => {
 
         <div className="hero-graphic">
           <canvas ref={canvasRef} className="network-canvas"></canvas>
-          
-          {/* Profile image - seamlessly integrated */}
-          <img 
+
+          <img
             src={profileImage}
-            alt="Moataz Badawy Profile" 
+            alt="Moataz Badawy Profile"
             className="profile-image"
           />
         </div>

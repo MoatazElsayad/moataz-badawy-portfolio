@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+import { CheckCircle2, Link2, Mail, MapPin } from 'lucide-react'
 import '../styles/Contact.css'
+
+const socialIconBase = 'https://cdn.simpleicons.org'
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -7,42 +10,42 @@ const Contact = () => {
     email: '',
     message: ''
   })
-  
+
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const validateForm = () => {
     const newErrors = {}
-    
+
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required'
     }
-    
+
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required'
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       newErrors.email = 'Invalid email format'
     }
-    
+
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required'
     } else if (formData.message.trim().length < 10) {
       newErrors.message = 'Message should be at least 10 characters'
     }
-    
+
     return newErrors
   }
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }))
-    // Clear error for this field when user starts typing
+
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [name]: ''
       }))
@@ -51,7 +54,7 @@ const Contact = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     const newErrors = validateForm()
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors)
@@ -59,14 +62,12 @@ const Contact = () => {
     }
 
     setIsSubmitting(true)
-    
-    // Simulate form submission
+
     setTimeout(() => {
       setSubmitted(true)
       setFormData({ name: '', email: '', message: '' })
       setIsSubmitting(false)
-      
-      // Reset success message after 3 seconds
+
       setTimeout(() => {
         setSubmitted(false)
       }, 3000)
@@ -82,7 +83,9 @@ const Contact = () => {
         <div className="contact-content">
           <div className="contact-info">
             <div className="info-item">
-              <div className="info-icon">📧</div>
+              <div className="info-icon" aria-hidden="true">
+                <Mail size={22} />
+              </div>
               <div className="info-text">
                 <h3>Email</h3>
                 <a href="mailto:moataz.badawy@email.com">moataz.badawy@email.com</a>
@@ -90,18 +93,38 @@ const Contact = () => {
             </div>
 
             <div className="info-item">
-              <div className="info-icon">🔗</div>
+              <div className="info-icon" aria-hidden="true">
+                <Link2 size={22} />
+              </div>
               <div className="info-text">
                 <h3>Connect With Me</h3>
                 <div className="social-links">
-                  <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer">GitHub</a>
-                  <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                  <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img
+                      src={`${socialIconBase}/github/111111?viewbox=auto&size=18`}
+                      alt="GitHub"
+                      className="contact-brand-icon contact-brand-icon-dark"
+                      loading="lazy"
+                    />
+                    <span>GitHub</span>
+                  </a>
+                  <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img
+                      src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=18`}
+                      alt="LinkedIn"
+                      className="contact-brand-icon"
+                      loading="lazy"
+                    />
+                    <span>LinkedIn</span>
+                  </a>
                 </div>
               </div>
             </div>
 
             <div className="info-item">
-              <div className="info-icon">📍</div>
+              <div className="info-icon" aria-hidden="true">
+                <MapPin size={22} />
+              </div>
               <div className="info-text">
                 <h3>Based In</h3>
                 <p>Cairo, Egypt</p>
@@ -112,7 +135,8 @@ const Contact = () => {
           <form className="contact-form" onSubmit={handleSubmit}>
             {submitted && (
               <div className="success-message">
-                ✓ Thank you! I'll get back to you soon.
+                <CheckCircle2 size={18} />
+                <span>Thank you! I'll get back to you soon.</span>
               </div>
             )}
 
@@ -152,8 +176,8 @@ const Contact = () => {
               {errors.message && <span className="error-message">{errors.message}</span>}
             </div>
 
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               className="btn btn-primary"
               disabled={isSubmitting}
             >

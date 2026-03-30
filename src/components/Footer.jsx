@@ -1,6 +1,8 @@
 import React from 'react'
-import { Code, Share2, Mail, Heart } from 'lucide-react'
+import { Heart, Mail } from 'lucide-react'
 import '../styles/Footer.css'
+
+const socialIconBase = 'https://cdn.simpleicons.org'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
@@ -27,13 +29,23 @@ const Footer = () => {
           <div className="footer-section">
             <h4>Follow</h4>
             <div className="footer-social">
-              <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" title="GitHub">
-                <Code size={20} />
+              <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+                <img
+                  src={`${socialIconBase}/github/ffffff?viewbox=auto&size=20`}
+                  alt="GitHub"
+                  className="social-brand-icon"
+                  loading="lazy"
+                />
               </a>
-              <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" title="LinkedIn">
-                <Share2 size={20} />
+              <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+                <img
+                  src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=20`}
+                  alt="LinkedIn"
+                  className="social-brand-icon"
+                  loading="lazy"
+                />
               </a>
-              <a href="mailto:moataz.badawy@email.com" title="Email">
+              <a href="mailto:moataz.badawy@email.com" title="Email" aria-label="Email">
                 <Mail size={20} />
               </a>
             </div>

@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { Sun, Moon, Menu, X } from 'lucide-react'
 import '../styles/Navbar.css'
 
 const Navbar = ({ onToggleDarkMode, darkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const canvasRef = useRef(null)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -22,65 +21,8 @@ const Navbar = ({ onToggleDarkMode, darkMode }) => {
     }
   }
 
-  // Particle animation for navbar
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const ctx = canvas.getContext('2d')
-    let animationId
-
-    const resizeCanvas = () => {
-      canvas.width = canvas.offsetWidth
-      canvas.height = canvas.offsetHeight
-    }
-
-    const particles = []
-    for (let i = 0; i < 15; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.3,
-        speedY: (Math.random() - 0.5) * 0.3,
-        opacity: Math.random() * 0.5 + 0.1
-      })
-    }
-
-    const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-      particles.forEach(p => {
-        p.x += p.speedX
-        p.y += p.speedY
-
-        if (p.x < 0) p.x = canvas.width
-        if (p.x > canvas.width) p.x = 0
-        if (p.y < 0) p.y = canvas.height
-        if (p.y > canvas.height) p.y = 0
-
-        ctx.fillStyle = `rgba(0, 212, 255, ${p.opacity})`
-        ctx.beginPath()
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fill()
-      })
-
-      animationId = requestAnimationFrame(animate)
-    }
-
-    resizeCanvas()
-    animate()
-
-    window.addEventListener('resize', resizeCanvas)
-    return () => {
-      cancelAnimationFrame(animationId)
-      window.removeEventListener('resize', resizeCanvas)
-    }
-  }, [])
-
   return (
     <nav className="navbar">
-      <canvas ref={canvasRef} className="nav-particles"></canvas>
       <div className="navbar-container">
         <div className="navbar-logo">
           <svg className="logo-icon" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
@@ -105,9 +47,9 @@ const Navbar = ({ onToggleDarkMode, darkMode }) => {
 
         <div className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <a href="#home" onClick={handleNavClick}>Home</a>
+          <a href="#projects" onClick={handleNavClick}>Projects</a>
           <a href="#about" onClick={handleNavClick}>About</a>
           <a href="#skills" onClick={handleNavClick}>Skills</a>
-          <a href="#projects" onClick={handleNavClick}>Projects</a>
           <a href="#experience" onClick={handleNavClick}>Experience</a>
           <a href="#contact" onClick={handleNavClick}>Contact</a>
         </div>

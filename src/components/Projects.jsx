@@ -1,15 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { BarChart3, Thermometer, Monitor, Bot, Puzzle, Zap, X } from 'lucide-react'
+import React, { useEffect, useMemo, useState } from 'react'
+import { BarChart3, Thermometer, Monitor, Bot, Puzzle, Zap, X, ChevronLeft, ChevronRight, PlayCircle } from 'lucide-react'
+import projects from '../data/projects'
 import '../styles/Projects.css'
+
+const brandIconBase = 'https://cdn.simpleicons.org'
 
 const Projects = () => {
   const [filter, setFilter] = useState('all')
   const [selectedProject, setSelectedProject] = useState(null)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
         setSelectedProject(null)
+      }
+
+      if (!selectedProject) {
+        return
+      }
+
+      const galleryLength = selectedProject.gallery?.length ?? 0
+
+      if (galleryLength > 1 && event.key === 'ArrowRight') {
+        setSelectedImageIndex((current) => (current + 1) % galleryLength)
+      }
+
+      if (galleryLength > 1 && event.key === 'ArrowLeft') {
+        setSelectedImageIndex((current) => (current - 1 + galleryLength) % galleryLength)
       }
     }
 
@@ -18,7 +36,7 @@ const Projects = () => {
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
     }
-  }, [])
+  }, [selectedProject])
 
   useEffect(() => {
     document.body.style.overflow = selectedProject ? 'hidden' : ''
@@ -30,106 +48,104 @@ const Projects = () => {
 
   const getIcon = (iconName) => {
     const iconMap = {
-      "BarChart3": <BarChart3 size={32} />,
-      "Thermometer": <Thermometer size={32} />,
-      "Monitor": <Monitor size={32} />,
-      "Bot": <Bot size={32} />,
-      "Puzzle": <Puzzle size={32} />,
-      "Zap": <Zap size={32} />
+      BarChart3: <BarChart3 size={32} />,
+      Thermometer: <Thermometer size={32} />,
+      Monitor: <Monitor size={32} />,
+      Bot: <Bot size={32} />,
+      Puzzle: <Puzzle size={32} />,
+      Zap: <Zap size={32} />
     }
     return iconMap[iconName]
   }
 
-  const projects = [
-    {
-      id: 1,
-      title: "AI Finance Tracker",
-      description: "Full-stack web app with receipt OCR scanning, expense categorization, and financial insights powered by AI. Built to solve real personal finance management.",
-      image: "ai-finance-tracker.jpg",
-      iconName: "BarChart3",
-      technologies: ["React", "Node.js", "Python", "OCR", "PostgreSQL"],
-      github: "https://github.com/moataz",
-      live: "https://ai-finance-tracker.vercel.app",
-      category: "fullstack"
-    },
-    {
-      id: 2,
-      title: "Smart IoT Monitor (ESP32)",
-      description: "Real-time environmental monitoring system using ESP32. Tracks temperature, humidity, and air quality with cloud data visualization. Built for practical home automation.",
-      image: "embedded-weather-station.jpg",
-      iconName: "Thermometer",
-      technologies: ["C++", "ESP32", "Arduino", "MQTT", "React"],
-      github: "https://github.com/moataz",
-      live: null,
-      category: "embedded"
-    },
-    {
-      id: 3,
-      title: "Network Shell (NSH)",
-      description: "Custom shell implementation with TCP/IP networking, command parsing, process management, and advanced scripting. Deep systems programming in C++.",
-      image: "nsh-shell.jpg",
-      iconName: "Monitor",
-      technologies: ["C++", "CMake", "Linux", "Networking", "Sockets"],
-      github: "https://github.com/moataz",
-      live: null,
-      category: "systems"
-    },
-    {
-      id: 4,
-      title: "Arduino Robotics Project",
-      description: "Autonomous robotics system with obstacle detection, pathfinding algorithms, and real-time sensor integration. Showcases hardware + software integration.",
-      image: "robotics-project.jpg",
-      iconName: "Bot",
-      technologies: ["Arduino", "C++", "Sensors", "Control Systems"],
-      github: "https://github.com/moataz",
-      live: null,
-      category: "embedded"
-    },
-    {
-      id: 5,
-      title: "Problem-Solving Repository",
-      description: "Advanced algorithms and data structures implementations. LeetCode-style problems solved in C++ with optimized solutions and explanations.",
-      image: "algorithms-dsa.jpg",
-      iconName: "Puzzle",
-      technologies: ["C++", "Algorithms", "Data Structures", "Problem-Solving"],
-      github: "https://github.com/moataz",
-      live: null,
-      category: "systems"
-    },
-    {
-      id: 6,
-      title: "Asynchronous C++ Framework",
-      description: "High-performance async I/O framework using Boost.Asio. Demonstrates modern C++ patterns, threading, and networking fundamentals.",
-      image: "boost-async-demo.jpg",
-      iconName: "Zap",
-      technologies: ["C++", "Boost", "Threading", "Async I/O"],
-      github: "https://github.com/moataz",
-      live: null,
-      category: "systems"
-    }
-  ]
+  const technologyLogos = {
+    React: { logo: 'react', color: '61DAFB' },
+    'Node.js': { logo: 'nodedotjs', color: '5FA04E' },
+    Python: { logo: 'python', color: '3776AB' },
+    PostgreSQL: { logo: 'postgresql', color: '4169E1' },
+    'C++': { logo: 'cplusplus', color: '00599C' },
+    ESP32: { logo: 'espressif', color: 'E7352C' },
+    Arduino: { logo: 'arduino', color: '00979D' },
+    MQTT: { logo: 'mqtt', color: '660066' },
+    Linux: { logo: 'linux', color: 'FCC624' },
+    Boost: { logo: 'boost', color: 'F7901E' },
+    JavaScript: { logo: 'javascript', color: 'F7DF1E' },
+    HTML5: { logo: 'html5', color: 'E34F26' },
+    CSS3: { logo: 'css', color: '1572B6' }
+  }
 
-  const categories = ['all', 'fullstack', 'embedded', 'systems']
-  
-  const filteredProjects = filter === 'all' 
-    ? projects 
-    : projects.filter(p => p.category === filter)
+  const categories = ['all', 'fullstack']
+
+  const filteredProjects = filter === 'all'
+    ? projects
+    : projects.filter((project) => project.category === filter)
+
+  const currentGalleryImage = useMemo(() => {
+    if (!selectedProject) {
+      return null
+    }
+
+    if (!selectedProject.gallery?.length) {
+      return selectedProject.image
+    }
+
+    return selectedProject.gallery[selectedImageIndex]
+  }, [selectedImageIndex, selectedProject])
 
   const openProject = (project) => {
     setSelectedProject(project)
+    setSelectedImageIndex(0)
   }
 
   const closeProject = () => {
     setSelectedProject(null)
+    setSelectedImageIndex(0)
+  }
+
+  const showNextImage = () => {
+    if (!selectedProject?.gallery?.length) {
+      return
+    }
+
+    setSelectedImageIndex((current) => (current + 1) % selectedProject.gallery.length)
+  }
+
+  const showPreviousImage = () => {
+    if (!selectedProject?.gallery?.length) {
+      return
+    }
+
+    setSelectedImageIndex((current) => (current - 1 + selectedProject.gallery.length) % selectedProject.gallery.length)
+  }
+
+  const renderTechnology = (tech, className) => {
+    const brand = technologyLogos[tech]
+
+    return (
+      <span className={className}>
+        {brand && (
+          <img
+            src={`${brandIconBase}/${brand.logo}/${brand.color}?viewbox=auto&size=20`}
+            alt={`${tech} logo`}
+            className="tech-logo"
+            loading="lazy"
+          />
+        )}
+        <span>{tech}</span>
+      </span>
+    )
   }
 
   return (
     <section id="projects" className="projects">
       <div className="container">
         <h2 className="section-title">Featured Projects</h2>
-        
+        <p className="section-subtitle">
+          A focused set of projects that are ready to be presented with real visuals and deeper context.
+        </p>
+
         <div className="project-filters">
-          {categories.map(cat => (
+          {categories.map((cat) => (
             <button
               key={cat}
               className={`filter-btn ${filter === cat ? 'active' : ''}`}
@@ -142,8 +158,8 @@ const Projects = () => {
 
         <div className="projects-grid">
           {filteredProjects.map((project) => (
-            <div 
-              key={project.id} 
+            <div
+              key={project.id}
               className="project-card"
               onClick={() => openProject(project)}
               role="button"
@@ -157,22 +173,40 @@ const Projects = () => {
               aria-label={`Open details for ${project.title}`}
             >
               <div className="project-image">
-                <img 
-                  src={`/src/assets/projects/${project.image}`} 
+                <img
+                  src={project.image}
                   alt={project.title}
                   className="project-img"
-                  onError={(e) => { e.target.style.display = 'none'; e.target.nextElementSibling.style.display = 'flex' }}
+                  onError={(event) => {
+                    event.target.style.display = 'none'
+                    event.target.nextElementSibling.style.display = 'flex'
+                  }}
                 />
-                <div className="project-icon-fallback" style={{ fontSize: '2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', height: '120px', width: '100%' }}>{getIcon(project.iconName)}</div>
+                {project.videoEmbed && (
+                  <div className="project-video-badge">
+                    <PlayCircle size={18} />
+                    <span>Watch demo</span>
+                  </div>
+                )}
+                <div className="project-icon-fallback" style={{ fontSize: '2rem', display: 'none', alignItems: 'center', justifyContent: 'center', height: '120px', width: '100%' }}>
+                  {getIcon(project.iconName)}
+                </div>
               </div>
-              
+
               <div className="project-content">
+                <div className="project-meta">
+                  <span className={`project-status ${project.status.toLowerCase().replace(/\s+/g, '-')}`}>{project.status}</span>
+                  <span className="project-role">{project.role}</span>
+                </div>
+
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
-                
+
                 <div className="project-technologies">
-                  {project.technologies.map((tech, idx) => (
-                    <span key={idx} className="tech-tag">{tech}</span>
+                  {project.technologies.map((tech) => (
+                    <React.Fragment key={tech}>
+                      {renderTechnology(tech, 'tech-tag')}
+                    </React.Fragment>
                   ))}
                 </div>
 
@@ -204,19 +238,15 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Project Detail Sidebar */}
       {selectedProject && (
         <>
-          {/* Overlay */}
-          <div 
+          <div
             className="project-overlay"
             onClick={closeProject}
           />
-          
-          {/* Sidebar */}
+
           <div className="project-sidebar">
-            {/* Close Button */}
-            <button 
+            <button
               className="sidebar-close-btn"
               onClick={closeProject}
               title="Close"
@@ -225,37 +255,100 @@ const Projects = () => {
               <X size={24} />
             </button>
 
-            {/* Project Images Section */}
             <div className="sidebar-images">
               <div className="sidebar-main-image">
-                <img 
-                  src={`/src/assets/projects/${selectedProject.image}`}
-                  alt={selectedProject.title}
-                  onError={(e) => { 
-                    e.target.style.display = 'none'
-                    e.target.parentElement.innerHTML = `<div style="display: flex; align-items: center; justify-content: center; height: 100%; width: 100%; background: linear-gradient(135deg, rgba(0, 102, 255, 0.1), rgba(0, 212, 255, 0.1))">${e.currentTarget.alt}</div>`
-                  }}
-                />
+                {selectedProject.videoEmbed && !selectedProject.gallery.length ? (
+                  <iframe
+                    src={selectedProject.videoEmbed}
+                    title={`${selectedProject.title} video demo`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    allowFullScreen
+                  ></iframe>
+                ) : (
+                  <>
+                    <img
+                      src={currentGalleryImage}
+                      alt={`${selectedProject.title} screenshot ${selectedImageIndex + 1}`}
+                      onError={(event) => {
+                        event.target.style.display = 'none'
+                        event.target.parentElement.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;width:100%;background:linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(56, 189, 248, 0.1))">${event.currentTarget.alt}</div>`
+                      }}
+                    />
+
+                    {selectedProject.gallery.length > 1 && (
+                      <>
+                        <button className="sidebar-gallery-nav sidebar-gallery-nav-left" onClick={showPreviousImage} aria-label="Previous image">
+                          <ChevronLeft size={20} />
+                        </button>
+                        <button className="sidebar-gallery-nav sidebar-gallery-nav-right" onClick={showNextImage} aria-label="Next image">
+                          <ChevronRight size={20} />
+                        </button>
+                        <div className="sidebar-gallery-counter">
+                          {selectedImageIndex + 1} / {selectedProject.gallery.length}
+                        </div>
+                      </>
+                    )}
+                  </>
+                )}
               </div>
+
+              {selectedProject.gallery.length > 1 && (
+                <div className="sidebar-thumbnails">
+                  {selectedProject.gallery.map((image, index) => (
+                    <button
+                      key={image}
+                      className={`sidebar-thumbnail ${selectedImageIndex === index ? 'active' : ''}`}
+                      onClick={() => setSelectedImageIndex(index)}
+                      aria-label={`Show screenshot ${index + 1}`}
+                    >
+                      <img src={image} alt={`${selectedProject.title} thumbnail ${index + 1}`} />
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
-            {/* Project Details Section */}
             <div className="sidebar-content">
+              <div className="sidebar-meta">
+                <span className={`project-status ${selectedProject.status.toLowerCase().replace(/\s+/g, '-')}`}>{selectedProject.status}</span>
+                <span className="sidebar-role">{selectedProject.role}</span>
+              </div>
+
               <h2 className="sidebar-title">{selectedProject.title}</h2>
-              
               <p className="sidebar-description">{selectedProject.description}</p>
 
-              {/* Technologies */}
+              <div className="sidebar-facts">
+                <div className="sidebar-fact">
+                  <span className="sidebar-fact-label">Timeline</span>
+                  <strong>{selectedProject.startDate} - {selectedProject.endDate}</strong>
+                </div>
+                <div className="sidebar-fact">
+                  <span className="sidebar-fact-label">Category</span>
+                  <strong>{selectedProject.category}</strong>
+                </div>
+              </div>
+
               <div className="sidebar-section">
                 <h3 className="sidebar-section-title">Technologies</h3>
                 <div className="sidebar-technologies">
-                  {selectedProject.technologies.map((tech, idx) => (
-                    <span key={idx} className="sidebar-tech-tag">{tech}</span>
+                  {selectedProject.technologies.map((tech) => (
+                    <React.Fragment key={tech}>
+                      {renderTechnology(tech, 'sidebar-tech-tag')}
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
 
-              {/* Links Section */}
+              <div className="sidebar-section">
+                <h3 className="sidebar-section-title">Highlights</h3>
+                <ul className="sidebar-highlights">
+                  {selectedProject.highlights.map((highlight) => (
+                    <li key={highlight}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+
               <div className="sidebar-section">
                 <h3 className="sidebar-section-title">Links</h3>
                 <div className="sidebar-links">
@@ -267,16 +360,12 @@ const Projects = () => {
                       Live Demo
                     </a>
                   )}
+                  {selectedProject.videoWatchUrl && (
+                    <a href={selectedProject.videoWatchUrl} target="_blank" rel="noopener noreferrer" className="sidebar-link">
+                      Watch Video
+                    </a>
+                  )}
                 </div>
-              </div>
-
-              {/* Additional Details Placeholder */}
-              <div className="sidebar-section">
-                <h3 className="sidebar-section-title">Project Details</h3>
-                <p className="sidebar-placeholder">
-                  This panel is ready for deeper case-study content like the problem, your approach,
-                  architecture decisions, challenges, screenshots, and final results.
-                </p>
               </div>
             </div>
           </div>

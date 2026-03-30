@@ -24,12 +24,14 @@ function App() {
   return (
     <div className={`app ${darkMode ? 'dark-mode' : 'light-mode'}`}>
       <Navbar onToggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Experience />
-      <Contact />
+      <main className="page-stack">
+        <Hero />
+        <Projects />
+        <About />
+        <Skills />
+        <Experience />
+        <Contact />
+      </main>
       <Footer />
     </div>
   )

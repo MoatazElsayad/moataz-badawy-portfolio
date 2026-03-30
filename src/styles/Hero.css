@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  margin-top: 70px;
+  margin-top: 0;
 }
 
 /* Simple Dark Background */
@@ -15,7 +15,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #0f1229 0%, #1a1f3a 100%);
+  background:
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.1), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(37, 99, 235, 0.12), transparent 34%),
+    linear-gradient(135deg, #08111f 0%, #0d1728 55%, #122037 100%);
   z-index: 1;
 }
 
@@ -40,7 +43,7 @@
 .nebula-1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, #00d4ff 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.3) 0%, transparent 70%);
   top: -100px;
   right: -100px;
   animation: nebulaDrift 20s ease-in-out infinite;
@@ -49,7 +52,7 @@
 .nebula-2 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, #0066ff 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.28) 0%, transparent 70%);
   bottom: -200px;
   left: -200px;
   animation: nebulaDrift 25s ease-in-out infinite reverse;
@@ -58,7 +61,7 @@
 .nebula-3 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #6600ff 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.18) 0%, transparent 70%);
   top: 50%;
   left: 10%;
   animation: nebulaDrift 30s ease-in-out infinite;
@@ -89,7 +92,7 @@
   font-size: 4.8rem;
   font-weight: 900;
   margin-bottom: 0.5rem;
-  background: linear-gradient(135deg, #0066ff 0%, #00b4ff 50%, #ffffff 100%);
+  background: linear-gradient(135deg, #dcecff 0%, #8fd7ff 42%, #2563eb 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -109,11 +112,14 @@
 }
 
 .tagline-accent {
-  background: linear-gradient(90deg, #00d4ff, #0066ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #a8d8ff;
+  -webkit-text-fill-color: currentColor;
   font-weight: 700;
+}
+
+.tagline-separator {
+  color: rgba(255, 255, 255, 0.6);
+  -webkit-text-fill-color: currentColor;
 }
 
 html[data-theme="light"] .hero-tagline {
@@ -130,7 +136,7 @@ html[data-theme="light"] .hero-tagline {
 .typing-text {
   font-size: 2rem;
   font-weight: 700;
-  background: linear-gradient(90deg, #00d4ff 0%, #0066ff 100%);
+  background: linear-gradient(90deg, #9ad7ff 0%, #3b82f6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -141,7 +147,7 @@ html[data-theme="light"] .hero-tagline {
 .cursor {
   width: 3px;
   height: 48px;
-  background: #00d4ff;
+  background: #7dd3fc;
   margin-left: 6px;
   animation: blink 0.7s infinite;
 }
@@ -173,7 +179,7 @@ html[data-theme="light"] .hero-bio {
 }
 
 .glow-btn {
-  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
   color: white;
   border: none;
   padding: 1.1rem 2.4rem;
@@ -184,12 +190,12 @@ html[data-theme="light"] .hero-bio {
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 102, 255, 0.3);
+  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.24);
 }
 
 .glow-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 16px 30px rgba(37, 99, 235, 0.28);
 }
 
 .glow-btn:active {
@@ -212,9 +218,9 @@ html[data-theme="light"] .hero-bio {
 
 /* Glass Button */
 .glass-btn {
-  background: rgba(0, 102, 255, 0.1);
-  color: #00d4ff;
-  border: 2px solid #00d4ff;
+  background: rgba(37, 99, 235, 0.06);
+  color: #b9e6ff;
+  border: 2px solid rgba(125, 211, 252, 0.35);
   padding: 1.1rem 2.4rem;
   font-size: 1rem;
   font-weight: 700;
@@ -222,13 +228,13 @@ html[data-theme="light"] .hero-bio {
   cursor: pointer;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(0, 212, 255, 0.15);
+  box-shadow: none;
 }
 
 .glass-btn:hover {
-  background: rgba(0, 212, 255, 0.15);
-  box-shadow: 0 0 25px rgba(0, 212, 255, 0.3);
-  border-color: #ffffff;
+  background: rgba(56, 189, 248, 0.12);
+  box-shadow: 0 12px 22px rgba(37, 99, 235, 0.14);
+  border-color: rgba(255, 255, 255, 0.4);
   color: #ffffff;
   transform: translateY(-2px);
 }
@@ -247,19 +253,26 @@ html[data-theme="light"] .hero-bio {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(0, 102, 255, 0.1);
-  color: #00d4ff;
+  background: rgba(37, 99, 235, 0.08);
+  color: #b9e6ff;
   transition: all 0.3s ease;
-  border: 2px solid rgba(0, 212, 255, 0.3);
-  box-shadow: 0 0 10px rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(125, 211, 252, 0.18);
+  box-shadow: 0 8px 18px rgba(8, 17, 31, 0.18);
 }
 
 .hero-social a:hover {
-  background: linear-gradient(135deg, #0066ff, #00d4ff);
+  background: linear-gradient(135deg, #1d4ed8, #38bdf8);
   color: white;
-  border-color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-3px);
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  box-shadow: 0 14px 28px rgba(37, 99, 235, 0.22);
+}
+
+.social-brand-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  display: block;
 }
 
 /* Simple Photo Section */
@@ -288,8 +301,8 @@ html[data-theme="light"] .hero-bio {
   height: 380px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #00d4ff;
-  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+  border: 3px solid rgba(125, 211, 252, 0.9);
+  box-shadow: 0 24px 50px rgba(3, 8, 20, 0.34);
   transition: all 0.4s ease;
   filter: brightness(1.02) contrast(1.04);
   position: relative;
@@ -298,7 +311,7 @@ html[data-theme="light"] .hero-bio {
 
 .profile-image:hover {
   transform: scale(1.02);
-  box-shadow: 0 0 50px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 28px 60px rgba(37, 99, 235, 0.18);
 }
 
 /* Responsive */
@@ -333,7 +346,7 @@ html[data-theme="light"] .hero-bio {
 @media (max-width: 768px) {
   .hero {
     padding: 5rem 0 3rem;
-    margin-top: 70px;
+    margin-top: 0;
   }
 
   .hero-content {

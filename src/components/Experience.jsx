@@ -4,54 +4,54 @@ import '../styles/Experience.css'
 const Experience = () => {
   const timeline = [
     {
-      type: "achievement",
-      period: "2021",
-      title: "USAID Scholarship Award",
-      organization: "American University in Cairo",
-      description: "Earned competitive USAID scholarship to study Computer Engineering at AUC. This recognition validated my discipline and commitment to excellence.",
+      type: 'achievement',
+      period: '2021',
+      title: 'USAID Scholarship Award',
+      organization: 'American University in Cairo',
+      description: 'Awarded a competitive USAID scholarship to study Computer Engineering at AUC, a milestone that set the direction for my academic and technical growth.',
       achievements: [
-        "Full tuition scholarship coverage",
-        "Highly competitive selection process",
-        "Catalyst for future growth and ambition"
+        'Full tuition scholarship support',
+        'Selected through a highly competitive process',
+        'Built a foundation for long-term technical ambition'
       ]
     },
     {
-      type: "education",
-      period: "2021 - 2025",
-      title: "Computer Engineering B.Sc.",
-      organization: "American University in Cairo (AUC)",
-      description: "USAID Scholar focused on systems programming, embedded systems, and full-stack development. Building expertise through challenging projects and continuous learning.",
+      type: 'education',
+      period: '2021 - 2025',
+      title: 'B.Sc. in Computer Engineering',
+      organization: 'American University in Cairo (AUC)',
+      description: 'Focused on systems programming, embedded development, and full-stack problem solving while building independent projects alongside coursework.',
       achievements: [
-        "Strong GPA with focus on technical excellence",
-        "Advanced courses: Systems Design, Networking, IoT",
-        "Led multiple capstone and personal projects",
-        "Active contributor to tech communities"
+        'Strong academic focus on technical fundamentals',
+        'Coursework in systems design, networking, and IoT',
+        'Built personal and project-based engineering experience',
+        'Stayed active in technical communities and self-driven learning'
       ]
     },
     {
-      type: "experience",
-      period: "2023 - Present",
-      title: "Freelance Developer & Tech Builder",
-      organization: "Self-Employed",
-      description: "Building real-world solutions combining web development, embedded systems, and problem-solving. Funded by independent projects and freelance work.",
+      type: 'experience',
+      period: '2023 - Present',
+      title: 'Freelance Developer and Technical Builder',
+      organization: 'Self-Employed',
+      description: 'Worked on practical solutions across web development, embedded systems, and C++ tooling while strengthening execution, ownership, and product thinking.',
       achievements: [
-        "Delivered full-stack web applications",
-        "Built ESP32-based IoT systems",
-        "Created advanced C++ system tools",
-        "Solved complex algorithmic problems at scale"
+        'Built full-stack web applications',
+        'Shipped ESP32-based IoT work',
+        'Developed C++ systems-oriented projects',
+        'Used algorithmic problem solving to sharpen engineering fundamentals'
       ]
     },
     {
-      type: "experience",
-      period: "2024 - Present",
-      title: "Startup Vision in Progress",
-      organization: "Founder (Pre-Launch)",
-      description: "Actively building toward tech startup launch. Combining expertise in electronics, software, and problem-solving to create a product that solves real problems.",
+      type: 'experience',
+      period: '2024 - Present',
+      title: 'Startup Vision in Progress',
+      organization: 'Founder Track',
+      description: 'Actively preparing for a future startup by combining product curiosity with hands-on engineering work and proof-of-concept building.',
       achievements: [
-        "Defined startup vision and technical roadmap",
-        "Prototyping core product features",
-        "Building proof-of-concept solutions",
-        "Preparing go-to-market strategy"
+        'Defined a clearer startup direction',
+        'Explored technical roadmap ideas',
+        'Built projects that support founder-level credibility',
+        'Focused on solving real problems before scaling ambition'
       ]
     }
   ]
@@ -60,24 +60,27 @@ const Experience = () => {
     <section id="experience" className="experience">
       <div className="container">
         <h2 className="section-title">Experience & Education</h2>
-        
+        <p className="section-subtitle">
+          The academic and self-driven milestones that shaped how I build.
+        </p>
+
         <div className="timeline">
           {timeline.map((item, index) => (
             <div key={index} className={`timeline-item ${item.type}`}>
               <div className="timeline-marker">
                 <div className="marker-dot"></div>
               </div>
-              
+
               <div className="timeline-content">
                 <div className="timeline-period">{item.period}</div>
                 <h3 className="timeline-title">{item.title}</h3>
                 <p className="timeline-organization">{item.organization}</p>
                 <p className="timeline-description">{item.description}</p>
-                
+
                 {item.achievements && (
                   <ul className="timeline-achievements">
-                    {item.achievements.map((achievement, idx) => (
-                      <li key={idx}>{achievement}</li>
+                    {item.achievements.map((achievement) => (
+                      <li key={achievement}>{achievement}</li>
                     ))}
                   </ul>
                 )}
@@ -87,9 +90,9 @@ const Experience = () => {
         </div>
 
         <div className="experience-cta">
-          <p>Want to learn more about my background and qualifications?</p>
-          <a href="#" className="btn btn-primary" download>
-            📄 Download My CV
+          <p>Want the full academic and project background in one place?</p>
+          <a href="/Moataz_Badawy_CV.pdf" className="btn btn-primary" download>
+            Download My CV
           </a>
         </div>
       </div>
