@@ -10,7 +10,7 @@ const About = () => {
       <div className="container">
         <h2 className="section-title">About Me</h2>
         <p className="section-subtitle">
-          A clearer snapshot of who I am, what I study, and how I want to build.
+          A current snapshot of my academic path, technical interests, and long-term direction.
         </p>
 
         <div className="about-card">
@@ -27,15 +27,15 @@ const About = () => {
 
             <div className="about-body">
               <p>
-                The American University in Cairo is where I am currently building my foundation as a Computer Engineering freshman, learning in an environment that pushes both technical discipline and long-term ambition.
+                I am a Computer Engineering student at the American University in Cairo (AUC), with a strong passion for technology and continuous self-development. I focus on strengthening my foundation in programming, problem-solving, and systems thinking, while also working on improving my communication skills and academic performance.
               </p>
 
               <p>
-                I am especially drawn to the intersection of software, embedded systems, and problem solving. Whether I am working on a full-stack application, an electronics-based prototype, or a lower-level C++ project, I care about understanding the problem deeply and building with intention.
+                I enjoy building projects that combine both software and hardware, especially in areas like embedded systems and low-level programming. I have experience working with Arduino, OLED displays, and C++, and I am particularly interested in competitive programming concepts such as bitmasking, optimization, and efficient algorithms. I like turning abstract ideas into real, working systems that solve practical problems.
               </p>
 
               <p>
-                My goal is to keep growing into a highly capable engineer while building toward bigger product and startup ambitions. This portfolio is a snapshot of that journey through the projects, skills, and ideas I am actively developing.
+                Looking ahead, I aim to build my own startup in the tech industry, creating solutions that have real impact. I am interested in developing scalable products and working on ideas that blend innovation with practicality. Ultimately, I want to grow into an engineer who not only builds systems but also leads meaningful projects that make a difference.
               </p>
             </div>
           </div>
@@ -43,12 +43,13 @@ const About = () => {
 
         <div className="philosophy-section">
           <blockquote className="philosophy-quote">
-            <p>"Tiny changes, remarkable results."</p>
-            <span className="quote-source">Inspired by Atomic Habits</span>
+            <p className="philosophy-quote-ar" dir="rtl" lang="ar">
+              <span>إِذَا غَامَرْتَ فِي شَرَفٍ مَرُومٍ</span>
+              <span className="quote-divider">❀</span>
+              <span>فَلَا تَقْنَعْ بِمَا دُونَ النُّجُومِ</span>
+            </p>
+            <span className="quote-source" dir="rtl" lang="ar">المتنبي</span>
           </blockquote>
-          <p className="philosophy-description">
-            This idea shapes how I learn and build. Progress compounds when the work is consistent, intentional, and repeated long enough for quality to emerge.
-          </p>
         </div>
       </div>
     </section>

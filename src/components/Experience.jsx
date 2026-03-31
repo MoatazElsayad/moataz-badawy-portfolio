@@ -4,54 +4,47 @@ import '../styles/Experience.css'
 const Experience = () => {
   const timeline = [
     {
-      type: 'achievement',
-      period: '2021',
-      title: 'USAID Scholarship Award',
-      organization: 'American University in Cairo',
-      description: 'Awarded a competitive USAID scholarship to study Computer Engineering at AUC, a milestone that set the direction for my academic and technical growth.',
-      achievements: [
-        'Full tuition scholarship support',
-        'Selected through a highly competitive process',
-        'Built a foundation for long-term technical ambition'
-      ]
-    },
-    {
       type: 'education',
-      period: '2021 - 2025',
-      title: 'B.Sc. in Computer Engineering',
-      organization: 'American University in Cairo (AUC)',
-      description: 'Focused on systems programming, embedded development, and full-stack problem solving while building independent projects alongside coursework.',
+      period: '2024',
+      title: 'High School',
+      organization: 'Public Education',
+      description: 'Completed Thanawya Amma with a strong academic record before starting the next stage of my technical journey.',
       achievements: [
-        'Strong academic focus on technical fundamentals',
-        'Coursework in systems design, networking, and IoT',
-        'Built personal and project-based engineering experience',
-        'Stayed active in technical communities and self-driven learning'
+        'GPA: 94.25%'
+      ]
+    },
+    {
+      type: 'achievement',
+      period: 'Sep 2024 - Jan 2025',
+      title: 'ALA Bridge Program',
+      organization: 'AUC / USAID',
+      description: 'Joined a before-college bridge year program at AUC that helped prepare me academically and personally for university life.',
+      achievements: [
+        'Completed the bridge program successfully'
       ]
     },
     {
       type: 'experience',
-      period: '2023 - Present',
-      title: 'Freelance Developer and Technical Builder',
-      organization: 'Self-Employed',
-      description: 'Worked on practical solutions across web development, embedded systems, and C++ tooling while strengthening execution, ownership, and product thinking.',
+      period: 'Jun 2025 - Dec 2025',
+      title: 'Digital Egyptian Pioneers Initiative',
+      organization: 'MCIT',
+      description: 'Completed online training in data analysis with a practical focus on data tools and reporting workflows.',
       achievements: [
-        'Built full-stack web applications',
-        'Shipped ESP32-based IoT work',
-        'Developed C++ systems-oriented projects',
-        'Used algorithmic problem solving to sharpen engineering fundamentals'
+        'Worked with Excel, SQL, Python, Tableau, and Power BI',
+        'Used Pandas, NumPy, and Matplotlib in Python-based analysis',
+        'Built stronger data handling and reporting foundations'
       ]
     },
     {
-      type: 'experience',
-      period: '2024 - Present',
-      title: 'Startup Vision in Progress',
-      organization: 'Founder Track',
-      description: 'Actively preparing for a future startup by combining product curiosity with hands-on engineering work and proof-of-concept building.',
+      type: 'achievement',
+      period: 'Jul 2025',
+      title: 'CS50x: Introduction to Computer Science',
+      organization: 'Harvard',
+      description: 'Completed CS50x and strengthened my understanding of core computer science topics through hands-on programming work.',
       achievements: [
-        'Defined a clearer startup direction',
-        'Explored technical roadmap ideas',
-        'Built projects that support founder-level credibility',
-        'Focused on solving real problems before scaling ambition'
+        'Completed the course certificate',
+        'Learned C, algorithms, memory, Python, SQLite, frontend basics, and Flask',
+        'Applied the course knowledge directly in real projects'
       ]
     }
   ]
@@ -61,7 +54,7 @@ const Experience = () => {
       <div className="container">
         <h2 className="section-title">Experience & Education</h2>
         <p className="section-subtitle">
-          The academic and self-driven milestones that shaped how I build.
+          The learning milestones, programs, and courses that shaped my current path.
         </p>
 
         <div className="timeline">

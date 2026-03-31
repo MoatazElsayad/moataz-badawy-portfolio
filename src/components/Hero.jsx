@@ -13,9 +13,9 @@ const Hero = () => {
   const [typingSpeed, setTypingSpeed] = useState(100)
 
   const phrases = [
-    'Computer Engineering Student',
-    'Systems Builder',
-    'Founder-minded Engineer'
+    'Computer Engineering Freshman',
+    'Young Entrepreneur',
+    'Full-Stack Developer'
   ]
 
   useEffect(() => {
@@ -39,10 +39,6 @@ const Hero = () => {
       nodes.push({
         x: canvas.width / 2 + Math.cos(angle) * distance,
         y: canvas.height / 2 + Math.sin(angle) * distance,
-        baseX: canvas.width / 2 + Math.cos(angle) * distance,
-        baseY: canvas.height / 2 + Math.sin(angle) * distance,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
         angle,
         distance,
         pulse: Math.random() * Math.PI * 2
@@ -63,36 +59,19 @@ const Hero = () => {
         node.x = centerX + Math.cos(node.angle) * (node.distance + Math.sin(node.pulse) * 20)
         node.y = centerY + Math.sin(node.angle) * (node.distance + Math.sin(node.pulse) * 20)
 
-        ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 + Math.sin(node.pulse) * 0.1})`
+        ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 + Math.sin(node.pulse) * 0.08})`
         ctx.lineWidth = 1
         ctx.beginPath()
         ctx.moveTo(centerX, centerY)
         ctx.lineTo(node.x, node.y)
         ctx.stroke()
 
-        const nodeSize = 2.5 + Math.sin(node.pulse) * 1.5
-        ctx.fillStyle = `rgba(0, 102, 255, ${0.5 + Math.cos(node.pulse) * 0.3})`
+        const nodeSize = 2.4 + Math.sin(node.pulse) * 1.2
+        ctx.fillStyle = `rgba(245, 199, 94, ${0.3 + Math.cos(node.pulse) * 0.15})`
         ctx.beginPath()
         ctx.arc(node.x, node.y, nodeSize, 0, Math.PI * 2)
         ctx.fill()
-
-        ctx.strokeStyle = `rgba(0, 212, 255, ${0.15 + Math.sin(node.pulse) * 0.1})`
-        ctx.lineWidth = 1.5
-        ctx.beginPath()
-        ctx.arc(node.x, node.y, nodeSize + 2, 0, Math.PI * 2)
-        ctx.stroke()
       })
-
-      ctx.fillStyle = 'rgba(0, 102, 255, 0.05)'
-      ctx.beginPath()
-      ctx.arc(centerX, centerY, 100, 0, Math.PI * 2)
-      ctx.fill()
-
-      ctx.strokeStyle = 'rgba(0, 212, 255, 0.1)'
-      ctx.lineWidth = 1.5
-      ctx.beginPath()
-      ctx.arc(centerX, centerY, 100, 0, Math.PI * 2)
-      ctx.stroke()
 
       animationId = requestAnimationFrame(animate)
     }
@@ -115,14 +94,14 @@ const Hero = () => {
 
       if (isDeleting) {
         setDisplayText(fullText.substring(0, displayText.length - 1))
-        setTypingSpeed(50)
+        setTypingSpeed(45)
       } else {
         setDisplayText(fullText.substring(0, displayText.length + 1))
-        setTypingSpeed(100)
+        setTypingSpeed(95)
       }
 
       if (!isDeleting && displayText === fullText) {
-        timer = setTimeout(() => setIsDeleting(true), 2000)
+        timer = setTimeout(() => setIsDeleting(true), 1900)
       } else if (isDeleting && displayText === '') {
         setIsDeleting(false)
         setLoopNum(loopNum + 1)
@@ -154,18 +133,22 @@ const Hero = () => {
         <div className="hero-text">
           <h1 className="hero-name">Moataz Badawy</h1>
           <h2 className="hero-tagline">
-            <span className="tagline-accent">Systems Engineering</span>{' '}
+            <span className="tagline-accent">Computer Engineering Freshman</span>{' '}
             <span className="tagline-separator">/</span>{' '}
-            <span className="tagline-accent">Embedded + Full-Stack</span>{' '}
+            <span className="tagline-accent">AUCian</span>{' '}
             <span className="tagline-separator">/</span>{' '}
-            <span className="tagline-accent">Startup Ambition</span>
+            <span className="tagline-accent">Young Entrepreneur</span>{' '}
+            <span className="tagline-separator">/</span>{' '}
+            <span className="tagline-accent">Full-Stack Developer</span>
           </h2>
+
           <div className="typing-container">
             <span className="typing-text">{displayText}</span>
             <span className="cursor"></span>
           </div>
+
           <p className="hero-bio">
-            USAID Scholar at AUC building across C++, embedded systems, and full-stack applications. I like technically demanding work, practical products, and projects that prove capability through execution.
+            Computer Engineering student focused on building efficient, scalable systems. I work with C++ and embedded systems, applying algorithmic thinking to turn complex problems into clean, high-performance solutions.
           </p>
 
           <div className="hero-buttons">
@@ -182,31 +165,16 @@ const Hero = () => {
           </div>
 
           <div className="hero-social">
-            <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
-              <img
-                src={`${socialIconBase}/github/ffffff?viewbox=auto&size=24`}
-                alt="GitHub"
-                className="social-brand-icon"
-                loading="lazy"
-              />
+            <a href="https://github.com/MoatazElsayad" target="_blank" rel="noopener noreferrer" title="GitHub" aria-label="GitHub">
+              <img src={`${socialIconBase}/github/ffffff?viewbox=auto&size=24`} alt="GitHub" className="social-brand-icon" loading="lazy" />
             </a>
-            <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
-              <img
-                src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=24`}
-                alt="LinkedIn"
-                className="social-brand-icon"
-                loading="lazy"
-              />
+            <a href="https://www.linkedin.com/in/moatazelsayad" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
+              <img src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=24`} alt="LinkedIn" className="social-brand-icon" loading="lazy" />
             </a>
-            <a href="https://twitter.com/moataz_badawy" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
-              <img
-                src={`${socialIconBase}/x/ffffff?viewbox=auto&size=24`}
-                alt="X"
-                className="social-brand-icon"
-                loading="lazy"
-              />
+            <a href="https://x.com/moa_0_0_0_" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
+              <img src={`${socialIconBase}/x/ffffff?viewbox=auto&size=24`} alt="X" className="social-brand-icon" loading="lazy" />
             </a>
-            <a href="mailto:moataz.badawy@email.com" title="Email" aria-label="Email">
+            <a href="mailto:moatazbadawy@aucegypt.edu" title="Email" aria-label="Email">
               <Mail size={24} />
             </a>
           </div>
@@ -214,12 +182,9 @@ const Hero = () => {
 
         <div className="hero-graphic">
           <canvas ref={canvasRef} className="network-canvas"></canvas>
-
-          <img
-            src={profileImage}
-            alt="Moataz Badawy Profile"
-            className="profile-image"
-          />
+          <div className="profile-frame">
+            <img src={profileImage} alt="Moataz Badawy Profile" className="profile-image" />
+          </div>
         </div>
       </div>
     </section>

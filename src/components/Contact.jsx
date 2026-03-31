@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { CheckCircle2, Link2, Mail, MapPin } from 'lucide-react'
+import { CheckCircle2, Link2, Mail, MapPin, Phone } from 'lucide-react'
 import '../styles/Contact.css'
 
 const socialIconBase = 'https://cdn.simpleicons.org'
@@ -78,7 +78,7 @@ const Contact = () => {
     <section id="contact" className="contact">
       <div className="container">
         <h2 className="section-title">Get In Touch</h2>
-        <p className="section-subtitle">Have a project in mind? Let's work together!</p>
+        <p className="section-subtitle">Open to internships, collaborations, and technical opportunities.</p>
 
         <div className="contact-content">
           <div className="contact-info">
@@ -88,7 +88,17 @@ const Contact = () => {
               </div>
               <div className="info-text">
                 <h3>Email</h3>
-                <a href="mailto:moataz.badawy@email.com">moataz.badawy@email.com</a>
+                <a href="mailto:moatazbadawy@aucegypt.edu">moatazbadawy@aucegypt.edu</a>
+              </div>
+            </div>
+
+            <div className="info-item">
+              <div className="info-icon" aria-hidden="true">
+                <Phone size={22} />
+              </div>
+              <div className="info-text">
+                <h3>Phone</h3>
+                <a href="tel:+201030238490">+20 103 023 8490</a>
               </div>
             </div>
 
@@ -99,23 +109,17 @@ const Contact = () => {
               <div className="info-text">
                 <h3>Connect With Me</h3>
                 <div className="social-links">
-                  <a href="https://github.com/moataz-badawy" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <img
-                      src={`${socialIconBase}/github/111111?viewbox=auto&size=18`}
-                      alt="GitHub"
-                      className="contact-brand-icon contact-brand-icon-dark"
-                      loading="lazy"
-                    />
+                  <a href="https://github.com/MoatazElsayad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <img src={`${socialIconBase}/github/111111?viewbox=auto&size=18`} alt="GitHub" className="contact-brand-icon contact-brand-icon-dark" loading="lazy" />
                     <span>GitHub</span>
                   </a>
-                  <a href="https://linkedin.com/in/moataz-badawy" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <img
-                      src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=18`}
-                      alt="LinkedIn"
-                      className="contact-brand-icon"
-                      loading="lazy"
-                    />
+                  <a href="https://www.linkedin.com/in/moatazelsayad" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <img src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=18`} alt="LinkedIn" className="contact-brand-icon" loading="lazy" />
                     <span>LinkedIn</span>
+                  </a>
+                  <a href="https://x.com/moa_0_0_0_" target="_blank" rel="noopener noreferrer" aria-label="X">
+                    <img src={`${socialIconBase}/x/111111?viewbox=auto&size=18`} alt="X" className="contact-brand-icon contact-brand-icon-dark" loading="lazy" />
+                    <span>X</span>
                   </a>
                 </div>
               </div>
@@ -127,7 +131,7 @@ const Contact = () => {
               </div>
               <div className="info-text">
                 <h3>Based In</h3>
-                <p>Cairo, Egypt</p>
+                <p>Giza, Egypt</p>
               </div>
             </div>
           </div>
@@ -136,7 +140,7 @@ const Contact = () => {
             {submitted && (
               <div className="success-message">
                 <CheckCircle2 size={18} />
-                <span>Thank you! I'll get back to you soon.</span>
+                <span>Thank you! I will get back to you soon.</span>
               </div>
             )}
 
@@ -176,11 +180,7 @@ const Contact = () => {
               {errors.message && <span className="error-message">{errors.message}</span>}
             </div>
 
-            <button
-              type="submit"
-              className="btn btn-primary"
-              disabled={isSubmitting}
-            >
+            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
               {isSubmitting ? 'Sending...' : 'Send Message'}
             </button>
           </form>

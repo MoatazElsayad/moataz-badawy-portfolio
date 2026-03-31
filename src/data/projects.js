@@ -2,7 +2,7 @@ const projects = [
   {
     id: 1,
     title: 'AI Finance Tracker',
-    description: 'Full-stack finance app with OCR receipt scanning, expense classification, and AI-assisted insights for everyday money decisions.',
+    description: 'AI-Powered Finance Tracker is a full-stack financial management application that combines intelligent automation with modern UI design. Built with React and FastAPI, it helps users manage budgets, scan receipts with OCR, track savings goals, generate PDF reports, and receive AI-driven insights through OpenRouter integrations.',
     category: 'fullstack',
     image: '/src/assets/projects/ai-finance-tracker/0.png',
     gallery: [
@@ -15,23 +15,46 @@ const projects = [
       '/src/assets/projects/ai-finance-tracker/6.png'
     ],
     iconName: 'BarChart3',
-    technologies: ['React', 'Node.js', 'Python', 'OCR', 'PostgreSQL'],
-    github: 'https://github.com/moataz-badawy',
-    live: 'https://ai-finance-tracker.vercel.app',
-    role: 'Full-stack developer',
-    status: 'In progress',
-    startDate: '2024-01',
-    endDate: 'Present',
+    technologies: ['FastAPI', 'React', 'HTML5', 'CSS3', 'JavaScript', 'SQLite', 'Docker'],
+    github: 'https://github.com/MoatazElsayad/ai-finance-tracker.git',
+    live: null,
+    role: 'Full-Stack Developer',
+    status: 'Completed',
+    startDate: 'Jan 2026',
+    endDate: 'Mar 2026',
     highlights: [
-      'Integrated OCR to turn paper receipts into structured expense entries.',
-      'Built category-based tracking flows for clearer spending visibility.',
-      'Designed a dashboard oriented around useful personal finance decisions.'
+      'Built an AI financial advisor workflow powered by OpenRouter models.',
+      'Integrated OCR-based receipt scanning into the finance flow.',
+      'Added budgeting, savings goals, alerts, and PDF reporting in one system.'
     ]
   },
   {
     id: 2,
-    title: 'Los Pollos',
-    description: 'Restaurant-style web experience with a strong visual direction, product presentation, and polished UI storytelling.',
+    title: 'MB Currency Converter',
+    description: 'MB Currency Converter is a full-stack CS50x final project built with Flask. It supports real-time conversion, user authentication, favorite currency pairs, conversion history, CSV export, country flags, and random currency facts while using ExchangeRate-API for live rates.',
+    category: 'fullstack',
+    image: 'https://img.youtube.com/vi/vLPi9Mm9WhM/maxresdefault.jpg',
+    gallery: [],
+    videoEmbed: 'https://www.youtube-nocookie.com/embed/vLPi9Mm9WhM',
+    videoWatchUrl: 'https://youtu.be/vLPi9Mm9WhM?si=sgPfjDqH8hJxbnjt',
+    iconName: 'Monitor',
+    technologies: ['Flask', 'HTML5', 'CSS3', 'JavaScript', 'SQLite'],
+    github: 'https://github.com/MoatazElsayad/CS50x_Final_Project.git',
+    live: null,
+    role: 'Full-Stack Developer',
+    status: 'Completed',
+    startDate: 'Jul 2025',
+    endDate: 'Jul 2025',
+    highlights: [
+      'Used ExchangeRate-API for live exchange-rate conversion.',
+      'Added authentication, favorites, conversion history, and CSV export.',
+      'Designed the app as a practical and easy-to-use financial tool.'
+    ]
+  },
+  {
+    id: 3,
+    title: 'Los Pollos Hermanos Restaurant',
+    description: 'This was the first website I built after learning HTML, CSS, and JavaScript. It has a simple structure, basic design, and light interactivity, and it represents an early milestone in my frontend journey.',
     category: 'fullstack',
     image: '/src/assets/projects/los-pollos/0.png',
     gallery: [
@@ -41,40 +64,17 @@ const projects = [
       '/src/assets/projects/los-pollos/3.png'
     ],
     iconName: 'Bot',
-    technologies: ['React', 'Node.js', 'CSS3'],
-    github: 'https://github.com/moataz-badawy',
-    live: null,
-    role: 'Frontend-focused developer',
+    technologies: ['HTML5', 'CSS3', 'JavaScript'],
+    github: 'https://github.com/MoatazElsayad/Los-Pollos-Hermanos-Restaurant.git',
+    live: 'https://moatazelsayad.github.io/Los-Pollos-Hermanos-Restaurant/',
+    role: 'Frontend Developer',
     status: 'Completed',
-    startDate: '2025-01',
-    endDate: '2025-01',
+    startDate: 'May 2025',
+    endDate: 'May 2025',
     highlights: [
-      'Built a visually driven interface with strong product presentation.',
-      'Used structured layout and styling to make the experience feel branded.',
-      'Focused on clean presentation and interaction polish.'
-    ]
-  },
-  {
-    id: 3,
-    title: 'MB Currency Converter',
-    description: 'Currency conversion tool focused on speed, clarity, and a clean user flow for quick exchange-rate checks.',
-    category: 'fullstack',
-    image: 'https://img.youtube.com/vi/vLPi9Mm9WhM/maxresdefault.jpg',
-    gallery: [],
-    videoEmbed: 'https://www.youtube-nocookie.com/embed/vLPi9Mm9WhM',
-    videoWatchUrl: 'https://youtu.be/vLPi9Mm9WhM?si=sgPfjDqH8hJxbnjt',
-    iconName: 'Monitor',
-    technologies: ['JavaScript', 'HTML5', 'CSS3'],
-    github: 'https://github.com/moataz-badawy',
-    live: null,
-    role: 'Frontend developer',
-    status: 'Completed',
-    startDate: '2025-01',
-    endDate: '2025-01',
-    highlights: [
-      'Built a focused conversion experience around a single clear task.',
-      'Prioritized speed and readability over unnecessary interface clutter.',
-      'Packaged the project as a concise utility with a strong demo flow.'
+      'Built the first complete website in my frontend learning journey.',
+      'Practiced page layout, styling, and basic JavaScript interactivity.',
+      'Used the project to turn fundamentals into a real deployed site.'
     ]
   }
 ]
