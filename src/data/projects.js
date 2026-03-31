@@ -1,18 +1,30 @@
+import aiFinance0 from '../assets/projects/ai-finance-tracker/0.png'
+import aiFinance1 from '../assets/projects/ai-finance-tracker/1.png'
+import aiFinance2 from '../assets/projects/ai-finance-tracker/2.png'
+import aiFinance3 from '../assets/projects/ai-finance-tracker/3.png'
+import aiFinance4 from '../assets/projects/ai-finance-tracker/4.png'
+import aiFinance5 from '../assets/projects/ai-finance-tracker/5.png'
+import aiFinance6 from '../assets/projects/ai-finance-tracker/6.png'
+import losPollos0 from '../assets/projects/los-pollos/0.png'
+import losPollos1 from '../assets/projects/los-pollos/1.png'
+import losPollos2 from '../assets/projects/los-pollos/2.png'
+import losPollos3 from '../assets/projects/los-pollos/3.png'
+
 const projects = [
   {
     id: 1,
     title: 'AI Finance Tracker',
     description: 'AI-Powered Finance Tracker is a full-stack financial management application that combines intelligent automation with modern UI design. Built with React and FastAPI, it helps users manage budgets, scan receipts with OCR, track savings goals, generate PDF reports, and receive AI-driven insights through OpenRouter integrations.',
     category: 'fullstack',
-    image: '/src/assets/projects/ai-finance-tracker/0.png',
+    image: aiFinance0,
     gallery: [
-      '/src/assets/projects/ai-finance-tracker/0.png',
-      '/src/assets/projects/ai-finance-tracker/1.png',
-      '/src/assets/projects/ai-finance-tracker/2.png',
-      '/src/assets/projects/ai-finance-tracker/3.png',
-      '/src/assets/projects/ai-finance-tracker/4.png',
-      '/src/assets/projects/ai-finance-tracker/5.png',
-      '/src/assets/projects/ai-finance-tracker/6.png'
+      aiFinance0,
+      aiFinance1,
+      aiFinance2,
+      aiFinance3,
+      aiFinance4,
+      aiFinance5,
+      aiFinance6
     ],
     iconName: 'BarChart3',
     technologies: ['FastAPI', 'React', 'HTML5', 'CSS3', 'JavaScript', 'SQLite', 'Docker'],
@@ -56,12 +68,12 @@ const projects = [
     title: 'Los Pollos Hermanos Restaurant',
     description: 'This was the first website I built after learning HTML, CSS, and JavaScript. It has a simple structure, basic design, and light interactivity, and it represents an early milestone in my frontend journey.',
     category: 'fullstack',
-    image: '/src/assets/projects/los-pollos/0.png',
+    image: losPollos0,
     gallery: [
-      '/src/assets/projects/los-pollos/0.png',
-      '/src/assets/projects/los-pollos/1.png',
-      '/src/assets/projects/los-pollos/2.png',
-      '/src/assets/projects/los-pollos/3.png'
+      losPollos0,
+      losPollos1,
+      losPollos2,
+      losPollos3
     ],
     iconName: 'Bot',
     technologies: ['HTML5', 'CSS3', 'JavaScript'],
