@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { CheckCircle2, Link2, Mail, MapPin, Phone } from 'lucide-react'
+import linkedinIcon from '../assets/icons/linkedin.svg'
 import '../styles/Contact.css'
 
 const socialIconBase = 'https://cdn.simpleicons.org'
@@ -82,6 +83,14 @@ const Contact = () => {
 
         <div className="contact-content">
           <div className="contact-info">
+            <div className="contact-intro-card">
+              <p className="contact-kicker">Contact</p>
+              <h3>Let&apos;s talk about internships, projects, or future opportunities.</h3>
+              <p>
+                If you have a role, collaboration, or idea that fits my background in software, systems, or product building, I&apos;d be happy to hear from you.
+              </p>
+            </div>
+
             <div className="info-item">
               <div className="info-icon" aria-hidden="true">
                 <Mail size={22} />
@@ -114,7 +123,7 @@ const Contact = () => {
                     <span>GitHub</span>
                   </a>
                   <a href="https://www.linkedin.com/in/moatazelsayad" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <img src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=18`} alt="LinkedIn" className="contact-brand-icon" loading="lazy" />
+                    <img src={linkedinIcon} alt="LinkedIn" className="contact-brand-icon" loading="lazy" />
                     <span>LinkedIn</span>
                   </a>
                   <a href="https://x.com/moa_0_0_0_" target="_blank" rel="noopener noreferrer" aria-label="X">
@@ -137,6 +146,12 @@ const Contact = () => {
           </div>
 
           <form className="contact-form" onSubmit={handleSubmit}>
+            <div className="contact-form-header">
+              <p className="contact-form-kicker">Send A Message</p>
+              <h3>Reach out directly</h3>
+              <p>I usually respond to serious messages about internships, collaborations, and technical opportunities.</p>
+            </div>
+
             {submitted && (
               <div className="success-message">
                 <CheckCircle2 size={18} />

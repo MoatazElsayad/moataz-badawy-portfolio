@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Mail } from 'lucide-react'
+import linkedinIcon from '../assets/icons/linkedin.svg'
 import profileImage from '../assets/images/profile.png'
 import '../styles/Hero.css'
 
@@ -169,7 +170,7 @@ const Hero = () => {
               <img src={`${socialIconBase}/github/ffffff?viewbox=auto&size=24`} alt="GitHub" className="social-brand-icon" loading="lazy" />
             </a>
             <a href="https://www.linkedin.com/in/moatazelsayad" target="_blank" rel="noopener noreferrer" title="LinkedIn" aria-label="LinkedIn">
-              <img src={`${socialIconBase}/linkedin/0A66C2?viewbox=auto&size=24`} alt="LinkedIn" className="social-brand-icon" loading="lazy" />
+              <img src={linkedinIcon} alt="LinkedIn" className="social-brand-icon" loading="lazy" />
             </a>
             <a href="https://x.com/moa_0_0_0_" target="_blank" rel="noopener noreferrer" title="X" aria-label="X">
               <img src={`${socialIconBase}/x/ffffff?viewbox=auto&size=24`} alt="X" className="social-brand-icon" loading="lazy" />
