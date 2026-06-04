@@ -1,6 +1,7 @@
 import React from 'react'
 import { Mail } from 'lucide-react'
 import linkedinIcon from '../assets/icons/linkedin.svg'
+import VisitorCounter from './VisitorCounter'
 import '../styles/Footer.css'
 
 const socialIconBase = 'https://cdn.simpleicons.org'
@@ -53,6 +54,7 @@ const Footer = () => {
                 <Mail size={20} />
               </a>
             </div>
+            <VisitorCounter />
           </div>
         </div>
 
