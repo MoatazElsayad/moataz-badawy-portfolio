@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Mail } from 'lucide-react'
 import linkedinIcon from '../assets/icons/linkedin.svg'
-import profileImage from '../assets/images/profile.png'
+import profileImage from '../assets/images/picture.png'
 import '../styles/Hero.css'
 
 const socialIconBase = 'https://cdn.simpleicons.org'

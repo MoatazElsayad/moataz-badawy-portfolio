@@ -1,0 +1,31 @@
+
+> moataz-badawy-portfolio@1.0.0 dev
+> vite --host 127.0.0.1 --port 5173
+
+
+  [32m[1mVITE[22m v4.5.14[39m  [2mready in [0m[1m176[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://127.0.0.1:[1m5173[22m/[39m
+[2m10:52:57 PM[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2mdist/index.html[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/App.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/About.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Contact.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Experience.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Footer.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Projects.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Skills.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Projects.jsx[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/About.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/About.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/About.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/Contact.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/Experience.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/Footer.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/Hero.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/Hero.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/Projects.css[22m
+[2m1:08:28 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/styles/Skills.css[22m
+[2m1:17:22 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m
+[2m1:17:24 AM[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/components/Hero.jsx[22m

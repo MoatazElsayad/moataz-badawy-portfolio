@@ -1,0 +1,56 @@
+[2m1:17:22 AM[22m [31m[1m[vite][22m[39m [31mInternal server error: C:\Users\moael\Programming\portfolio\src\components\Hero.jsx: Unterminated string constant. (4:25)
+
+[0m [90m 2 |[31m [36mimport[31m { [33mMail[31m } [36mfrom[31m [32m'lucide-react'[31m
+ [90m 3 |[31m [36mimport[31m linkedinIcon [36mfrom[31m [32m'../assets/icons/linkedin.svg'[31m
+[31m[1m>[22m[31m[90m 4 |[31m [36mimport[31m profileImage [36mfrom[31m [32m'<div styleName={} />[31m
+ [90m   |[31m                          [31m[1m^[22m[31m
+ [90m 5 |[31m [33m<[31m[33massets[31m [33m/[31m[33m>[31m
+ [90m 6 |[31m [33m<[31m[33mimages[31m [33m/[31m[33m>[31m
+ [90m 7 |[31m [33m<[31m[33mpicture[31m[33m>[31m[33m<[31m[33m/[31m[33mpicture[31m[33m>[31m[33m.[31mpng[32m'[31m[0m[39m
+  Plugin: [35mvite:react-babel[39m
+  File: [36mC:/Users/moael/Programming/portfolio/src/components/Hero.jsx[39m:4:25
+[33m  2  |  import { Mail } from 'lucide-react'
+  3  |  import linkedinIcon from '../assets/icons/linkedin.svg'
+  4  |  import profileImage from '<div styleName={} />
+     |                           ^
+  5  |  <assets />
+  6  |  <images />[39m
+      at constructor (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:365:19)
+      at JSXParserMixin.raise (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:6599:19)
+      at Object.unterminated (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:5664:20)
+      at readStringContents (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:5406:16)
+      at JSXParserMixin.readString (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:6498:9)
+      at JSXParserMixin.getTokenFromCode (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:6258:14)
+      at JSXParserMixin.getTokenFromCode (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:4797:11)
+      at JSXParserMixin.nextToken (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:5782:10)
+      at JSXParserMixin.next (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:5692:10)
+      at JSXParserMixin.eatContextual (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:6868:12)
+      at JSXParserMixin.expectContextual (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:6874:15)
+      at JSXParserMixin.parseImportSpecifiersAndAfter (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:14243:10)
+      at JSXParserMixin.parseImport (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:14235:17)
+      at JSXParserMixin.parseStatementContent (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:12876:27)
+      at JSXParserMixin.parseStatementLike (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:12767:17)
+      at JSXParserMixin.parseModuleItem (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:12744:17)
+      at JSXParserMixin.parseBlockOrModuleBlockBody (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:13316:36)
+      at JSXParserMixin.parseBlockBody (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:13309:10)
+      at JSXParserMixin.parseProgram (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:12622:10)
+      at JSXParserMixin.parseTopLevel (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:12612:25)
+      at JSXParserMixin.parse (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:14488:25)
+      at parse (C:\Users\moael\Programming\portfolio\node_modules\@babel\parser\lib\index.js:14522:38)
+      at parser (C:\Users\moael\Programming\portfolio\node_modules\@babel\core\lib\parser\index.js:41:34)
+      at parser.next (<anonymous>)
+      at normalizeFile (C:\Users\moael\Programming\portfolio\node_modules\@babel\core\lib\transformation\normalize-file.js:64:37)
+      at normalizeFile.next (<anonymous>)
+      at run (C:\Users\moael\Programming\portfolio\node_modules\@babel\core\lib\transformation\index.js:22:50)
+      at run.next (<anonymous>)
+      at transform (C:\Users\moael\Programming\portfolio\node_modules\@babel\core\lib\transform.js:22:33)
+      at transform.next (<anonymous>)
+      at step (C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:261:32)
+      at C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:223:11)
+      at C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:189:28
+      at C:\Users\moael\Programming\portfolio\node_modules\@babel\core\lib\gensync-utils\async.js:67:7
+      at C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:113:33
+      at step (C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:287:14)
+      at C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:273:13
+      at async.call.result.err.err (C:\Users\moael\Programming\portfolio\node_modules\gensync\index.js:223:11)
