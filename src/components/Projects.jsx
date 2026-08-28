@@ -1,22 +1,136 @@
-import React, { useEffect, useMemo, useState } from 'react'
-import { BarChart3, Thermometer, Monitor, Bot, Puzzle, Zap, X, ChevronLeft, ChevronRight, PlayCircle } from 'lucide-react'
+import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { BarChart3, Thermometer, Monitor, Bot, Puzzle, Zap, X, ChevronLeft, ChevronRight, PlayCircle, Globe } from 'lucide-react'
 import projects from '../data/projects'
+
+const GithubIcon = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .3z" />
+  </svg>
+)
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Projects.css'
 
 const brandIconBase = 'https://cdn.simpleicons.org'
 
 const Projects = () => {
-  const [filter, setFilter] = useState('all')
+  useScrollReveal();
+
   const [selectedProject, setSelectedProject] = useState(null)
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [carouselIndex, setCarouselIndex] = useState(0)
+  const [perView, setPerView] = useState(3)
+  const [withTransition, setWithTransition] = useState(true)
+
+  const sectionRef = useRef(null)
+
+  useEffect(() => {
+    const computePerView = () => {
+      const width = window.innerWidth
+      setPerView(width <= 640 ? 1 : width <= 1024 ? 2 : 3)
+    }
+    computePerView()
+    window.addEventListener('resize', computePerView)
+    return () => window.removeEventListener('resize', computePerView)
+  }, [])
+
+  useEffect(() => {
+    const target = sectionRef.current
+    if (!target) return undefined
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          setCarouselIndex(0)
+          setWithTransition(true)
+        }
+      },
+      { threshold: 0 }
+    )
+
+    observer.observe(target)
+    return () => observer.disconnect()
+  }, [])
+
+  const totalProjects = projects.length
+
+  const handleTrackTransitionEnd = (event) => {
+    if (event.target !== event.currentTarget || event.propertyName !== 'transform') return
+    if (carouselIndex >= totalProjects) {
+      setWithTransition(false)
+      setCarouselIndex(carouselIndex - totalProjects)
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setWithTransition(true))
+      )
+    }
+  }
+
+  const goToPrevSlide = () => {
+    if (!withTransition) return
+    if (carouselIndex === 0) {
+      setWithTransition(false)
+      setCarouselIndex(totalProjects)
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => {
+          setWithTransition(true)
+          setCarouselIndex(totalProjects - 1)
+        })
+      )
+      return
+    }
+    setCarouselIndex(carouselIndex - 1)
+  }
+
+  const goToNextSlide = () => {
+    if (!withTransition) return
+    if (carouselIndex >= 2 * totalProjects - perView) {
+      setWithTransition(false)
+      setCarouselIndex(carouselIndex % totalProjects)
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setWithTransition(true))
+      )
+      return
+    }
+    setCarouselIndex(carouselIndex + 1)
+  }
+
+  const sidebarRef = useRef(null)
+  const closeBtnRef = useRef(null)
+  const lastFocusedRef = useRef(null)
 
   useEffect(() => {
     const handleKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setSelectedProject(null)
+      if (!selectedProject) {
+        return
       }
 
-      if (!selectedProject) {
+      if (event.key === 'Escape') {
+        closeProject()
+        return
+      }
+
+      if (event.key === 'Tab') {
+        const sidebar = sidebarRef.current
+        if (!sidebar) {
+          return
+        }
+
+        const focusable = sidebar.querySelectorAll(
+          'button, [href], input, textarea, select, [tabindex]:not([tabindex="-1"])'
+        )
+        if (!focusable.length) {
+          return
+        }
+
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault()
+          last.focus()
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault()
+          first.focus()
+        }
         return
       }
 
@@ -35,6 +149,19 @@ const Projects = () => {
 
     return () => {
       document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [selectedProject])
+
+  useEffect(() => {
+    if (!selectedProject) {
+      return
+    }
+
+    lastFocusedRef.current = document.activeElement
+    closeBtnRef.current?.focus()
+
+    return () => {
+      lastFocusedRef.current?.focus?.()
     }
   }, [selectedProject])
 
@@ -73,12 +200,6 @@ const Projects = () => {
     HTML5: { logo: 'html5', color: 'E34F26' },
     CSS3: { logo: 'css', color: '1572B6' }
   }
-
-  const categories = ['all', 'fullstack']
-
-  const filteredProjects = filter === 'all'
-    ? projects
-    : projects.filter((project) => project.category === filter)
 
   const currentGalleryImage = useMemo(() => {
     if (!selectedProject) {
@@ -136,52 +257,89 @@ const Projects = () => {
     )
   }
 
+  const renderMedia = (src, alt, className) => {
+    if (src && src.endsWith('.mp4')) {
+      return (
+        <video
+          src={src}
+          className={className}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ objectFit: 'cover' }}
+        />
+      )
+    }
+    return (
+      <img
+        src={src}
+        alt={alt}
+        className={className}
+        onError={(event) => {
+          event.target.style.display = 'none'
+          if (event.target.nextElementSibling && event.target.nextElementSibling.classList.contains('project-icon-fallback')) {
+            event.target.nextElementSibling.style.display = 'flex'
+          } else if (event.target.parentElement && event.target.parentElement.classList.contains('sidebar-main-image')) {
+            event.target.parentElement.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;width:100%;background:linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1), rgba(var(--secondary-color-rgb), 0.1))">${alt}</div>`
+          }
+        }}
+      />
+    )
+  }
+
   return (
-    <section id="projects" className="projects">
+    <section id="projects" className="projects" ref={sectionRef}>
       <div className="container">
-        <h2 className="section-title">Featured Projects</h2>
+        <p className="section-eyebrow">Featured Work</p>
+        <h2 className="section-title">Ideas are nice. Working systems are better.</h2>
         <p className="section-subtitle">
           A focused set of projects that are ready to be presented with real visuals and deeper context.
         </p>
 
-        <div className="project-filters">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              className={`filter-btn ${filter === cat ? 'active' : ''}`}
-              onClick={() => setFilter(cat)}
-            >
-              {cat.charAt(0).toUpperCase() + cat.slice(1)}
-            </button>
-          ))}
-        </div>
+        {(() => {
+          const logicalStart = (carouselIndex % totalProjects) + 1
+          const logicalEnd = ((carouselIndex % totalProjects) + perView - 1) % totalProjects + 1
 
-        <div className="projects-grid">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="project-card"
-              onClick={() => openProject(project)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' || event.key === ' ') {
-                  event.preventDefault()
-                  openProject(project)
-                }
-              }}
-              aria-label={`Open details for ${project.title}`}
-            >
+          return (
+            <>
+              <div className="projects-counter" role="status">
+                Showing projects {logicalStart}&ndash;{logicalEnd} of {totalProjects}
+              </div>
+
+              <div className="projects-carousel">
+                <button
+                  type="button"
+                  className="carousel-arrow carousel-arrow-left"
+                  onClick={goToPrevSlide}
+                  aria-label="Previous projects"
+                >
+                  <ChevronLeft size={22} />
+                </button>
+
+                <div className="projects-carousel-viewport">
+                  <div
+                    className="projects-carousel-track"
+                    style={{ '--i': carouselIndex, transition: withTransition ? undefined : 'none' }}
+                    onTransitionEnd={handleTrackTransitionEnd}
+                  >
+                    {[...projects, ...projects].map((project, slideIdx) => (
+                      <div
+                        key={`${project.id}-slide-${slideIdx}`}
+                        className="project-card"
+                        onClick={() => openProject(project)}
+                        role="button"
+                        tabIndex={0}
+                        onKeyDown={(event) => {
+                          if (event.key === 'Enter' || event.key === ' ') {
+                            event.preventDefault()
+                            openProject(project)
+                          }
+                        }}
+                        aria-label={`Open details for ${project.title}`}
+                      >
               <div className="project-image">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="project-img"
-                  onError={(event) => {
-                    event.target.style.display = 'none'
-                    event.target.nextElementSibling.style.display = 'flex'
-                  }}
-                />
+                {renderMedia(project.image, project.title, "project-img")}
                 {project.videoEmbed && (
                   <div className="project-video-badge">
                     <PlayCircle size={18} />
@@ -218,7 +376,8 @@ const Projects = () => {
                     className="project-link github-link"
                     onClick={(event) => event.stopPropagation()}
                   >
-                    <span>GitHub</span>
+                    <GithubIcon size={15} />
+                    <span> GitHub</span>
                   </a>
                   {project.live && (
                     <a
@@ -228,14 +387,28 @@ const Projects = () => {
                       className="project-link live-link"
                       onClick={(event) => event.stopPropagation()}
                     >
-                      <span>Live Demo</span>
+                      <span>Visit Website</span>
                     </a>
                   )}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+                    </div>
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  className="carousel-arrow carousel-arrow-right"
+                  onClick={goToNextSlide}
+                  aria-label="Next projects"
+                >
+                  <ChevronRight size={22} />
+                </button>
+              </div>
+            </>
+          )
+        })()}
       </div>
 
       {selectedProject && (
@@ -245,10 +418,17 @@ const Projects = () => {
             onClick={closeProject}
           />
 
-          <div className="project-sidebar">
+          <div
+            className="project-sidebar"
+            ref={sidebarRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={selectedProject.title}
+          >
             <button
               className="sidebar-close-btn"
               onClick={closeProject}
+              ref={closeBtnRef}
               title="Close"
               aria-label="Close project details"
             >
@@ -267,14 +447,7 @@ const Projects = () => {
                   ></iframe>
                 ) : (
                   <>
-                    <img
-                      src={currentGalleryImage}
-                      alt={`${selectedProject.title} screenshot ${selectedImageIndex + 1}`}
-                      onError={(event) => {
-                        event.target.style.display = 'none'
-                        event.target.parentElement.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;width:100%;background:linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(56, 189, 248, 0.1))">${event.currentTarget.alt}</div>`
-                      }}
-                    />
+                    {renderMedia(currentGalleryImage, `${selectedProject.title} screenshot ${selectedImageIndex + 1}`, "")}
 
                     {selectedProject.gallery.length > 1 && (
                       <>
@@ -284,29 +457,22 @@ const Projects = () => {
                         <button className="sidebar-gallery-nav sidebar-gallery-nav-right" onClick={showNextImage} aria-label="Next image">
                           <ChevronRight size={20} />
                         </button>
-                        <div className="sidebar-gallery-counter">
-                          {selectedImageIndex + 1} / {selectedProject.gallery.length}
+                        <div className="sidebar-gallery-dots" aria-label="Project screenshots">
+                          {selectedProject.gallery.map((image, index) => (
+                            <button
+                              key={image}
+                              type="button"
+                              className={`sidebar-gallery-dot ${selectedImageIndex === index ? 'active' : ''}`}
+                              onClick={() => setSelectedImageIndex(index)}
+                              aria-label={`Show screenshot ${index + 1} of ${selectedProject.gallery.length}`}
+                            />
+                          ))}
                         </div>
                       </>
                     )}
                   </>
                 )}
               </div>
-
-              {selectedProject.gallery.length > 1 && (
-                <div className="sidebar-thumbnails">
-                  {selectedProject.gallery.map((image, index) => (
-                    <button
-                      key={image}
-                      className={`sidebar-thumbnail ${selectedImageIndex === index ? 'active' : ''}`}
-                      onClick={() => setSelectedImageIndex(index)}
-                      aria-label={`Show screenshot ${index + 1}`}
-                    >
-                      <img src={image} alt={`${selectedProject.title} thumbnail ${index + 1}`} />
-                    </button>
-                  ))}
-                </div>
-              )}
             </div>
 
             <div className="sidebar-content">
@@ -353,11 +519,18 @@ const Projects = () => {
                 <h3 className="sidebar-section-title">Links</h3>
                 <div className="sidebar-links">
                   <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="sidebar-link">
+                    <GithubIcon size={15} />
                     GitHub
                   </a>
                   {selectedProject.live && (
-                    <a href={selectedProject.live} target="_blank" rel="noopener noreferrer" className="sidebar-link">
-                      Live Demo
+                    <a
+                      href={selectedProject.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="sidebar-link sidebar-link-secondary"
+                    >
+                      <Globe size={15} />
+                      Visit Website
                     </a>
                   )}
                   {selectedProject.videoWatchUrl && (

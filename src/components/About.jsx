@@ -1,27 +1,28 @@
 import React from 'react'
 import profilePhoto from '../assets/images/profile.jpg'
+import aucLogo from '../assets/images/auc-logo.png'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/About.css'
 
-const aucLogoUrl = 'https://play-lh.googleusercontent.com/zZ2SExEDKKmKQwHQwF9mnuMrqwdidwWmOjCyPeX2XH1Lu4uz9V_5vcnQ6eWlJNLP6OE'
-
 const About = () => {
+  useScrollReveal();
   return (
     <section id="about" className="about">
       <div className="container">
-        <h2 className="section-title">About Me</h2>
+        <p className="section-eyebrow">A Little About Me</p>
+        <h2 className="section-title">I&rsquo;m at my best when I&rsquo;m figuring things out.</h2>
         <p className="section-subtitle">
           A current snapshot of my academic path, technical interests, and long-term direction.
         </p>
 
-        <div className="about-card">
-          <div className="about-photo-column">
-            <div className="about-photo-ring">
-              <img src={profilePhoto} alt="Moataz Badawy portrait" className="about-photo" />
-            </div>
+        <div className="about-card scroll-reveal">
+          <div className="about-photo-panel">
+            <img src={profilePhoto} alt="Moataz Badawy portrait" className="about-photo" />
+            <div className="about-photo-fade" aria-hidden="true"></div>
           </div>
 
           <div className="about-copy-column">
-            <img src={aucLogoUrl} alt="AUC logo" className="about-auc-logo" />
+            <img src={aucLogo} alt="AUC logo" className="about-auc-logo" />
             <p className="about-affiliation">The American University in Cairo</p>
             <p className="about-role">Computer Engineering Freshman, School of Sciences and Engineering</p>
 
@@ -41,11 +42,11 @@ const About = () => {
           </div>
         </div>
 
-        <div className="philosophy-section">
+        <div className="philosophy-section scroll-reveal delay-1">
           <blockquote className="philosophy-quote">
             <p className="philosophy-quote-ar" dir="rtl" lang="ar">
               <span>إِذَا غَامَرْتَ فِي شَرَفٍ مَرُومٍ</span>
-              <span className="quote-divider">❀</span>
+              <span className="quote-divider">✦</span>
               <span>فَلَا تَقْنَعْ بِمَا دُونَ النُّجُومِ</span>
             </p>
             <span className="quote-source" dir="rtl" lang="ar">المتنبي</span>

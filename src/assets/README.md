@@ -9,6 +9,8 @@ Example:
 - `profile.jpg` - Your professional headshot
 - `banner.png` - Header/hero banner
 - `avatar.svg` - Profile avatar
+- `blue_hero.png` - Default blue hero banner for the site theme
+- `Burgundy_hero.jpeg` - Alternate burgundy hero banner for the site theme
 
 Usage in React:
 ```javascript

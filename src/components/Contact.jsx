@@ -1,204 +1,73 @@
-import React, { useState } from 'react'
-import { CheckCircle2, Link2, Mail, MapPin, Phone } from 'lucide-react'
-import linkedinIcon from '../assets/icons/linkedin.svg'
+import React from 'react'
+import { FileDown, Mail } from 'lucide-react'
+import { useScrollReveal } from '../hooks/useScrollReveal'
 import '../styles/Contact.css'
 
-const socialIconBase = 'https://cdn.simpleicons.org'
+const contactEmail = 'moatazbadawy@aucegypt.edu'
+
+const LinkedinIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z" />
+  </svg>
+)
+
+const GithubIcon = ({ size = 18 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M12 .3a12 12 0 0 0-3.79 23.39c.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.81 1.3 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.11-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 6.01 0c2.29-1.55 3.3-1.23 3.3-1.23.65 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.23v3.3c0 .32.22.7.83.58A12 12 0 0 0 12 .3z" />
+  </svg>
+)
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  })
-
-  const [errors, setErrors] = useState({})
-  const [submitted, setSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const validateForm = () => {
-    const newErrors = {}
-
-    if (!formData.name.trim()) {
-      newErrors.name = 'Name is required'
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = 'Email is required'
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = 'Invalid email format'
-    }
-
-    if (!formData.message.trim()) {
-      newErrors.message = 'Message is required'
-    } else if (formData.message.trim().length < 10) {
-      newErrors.message = 'Message should be at least 10 characters'
-    }
-
-    return newErrors
-  }
-
-  const handleChange = (e) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value
-    }))
-
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: ''
-      }))
-    }
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    const newErrors = validateForm()
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
-    }
-
-    setIsSubmitting(true)
-
-    setTimeout(() => {
-      setSubmitted(true)
-      setFormData({ name: '', email: '', message: '' })
-      setIsSubmitting(false)
-
-      setTimeout(() => {
-        setSubmitted(false)
-      }, 3000)
-    }, 1500)
-  }
+  useScrollReveal()
 
   return (
     <section id="contact" className="contact">
       <div className="container">
-        <h2 className="section-title">Get In Touch</h2>
-        <p className="section-subtitle">Open to internships, collaborations, and technical opportunities.</p>
+        <div className="contact-card scroll-reveal">
+          <div className="contact-arch-ring" aria-hidden="true"></div>
 
-        <div className="contact-content">
-          <div className="contact-info">
-            <div className="contact-intro-card">
-              <p className="contact-kicker">Contact</p>
-              <h3>Let&apos;s talk about internships, projects, or future opportunities.</h3>
-              <p>
-                If you have a role, collaboration, or idea that fits my background in software, systems, or product building, I&apos;d be happy to hear from you.
-              </p>
-            </div>
+          <span className="contact-kicker">Get in Touch</span>
 
-            <div className="info-item">
-              <div className="info-icon" aria-hidden="true">
-                <Mail size={22} />
-              </div>
-              <div className="info-text">
-                <h3>Email</h3>
-                <a href="mailto:moatazbadawy@aucegypt.edu">moatazbadawy@aucegypt.edu</a>
-              </div>
-            </div>
+          <h2 className="contact-heading">Let&apos;s turn an idea into something real.</h2>
 
-            <div className="info-item">
-              <div className="info-icon" aria-hidden="true">
-                <Phone size={22} />
-              </div>
-              <div className="info-text">
-                <h3>Phone</h3>
-                <a href="tel:+201030238490">+20 103 023 8490</a>
-              </div>
-            </div>
+          <p className="contact-bio">
+            I&apos;m a Computer Engineering student at AUC working across embedded systems,
+            full-stack products, and data-driven tools. I&apos;m targeting software engineering
+            internships from Summer 2027 and I&apos;m open to collaborations and interesting
+            builds right now — if you have an ambitious idea, let&apos;s talk.
+          </p>
 
-            <div className="info-item">
-              <div className="info-icon" aria-hidden="true">
-                <Link2 size={22} />
-              </div>
-              <div className="info-text">
-                <h3>Connect With Me</h3>
-                <div className="social-links">
-                  <a href="https://github.com/MoatazElsayad" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <img src={`${socialIconBase}/github/111111?viewbox=auto&size=18`} alt="GitHub" className="contact-brand-icon contact-brand-icon-dark" loading="lazy" />
-                    <span>GitHub</span>
-                  </a>
-                  <a href="https://www.linkedin.com/in/moatazelsayad" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                    <img src={linkedinIcon} alt="LinkedIn" className="contact-brand-icon" loading="lazy" />
-                    <span>LinkedIn</span>
-                  </a>
-                  <a href="https://x.com/moa_0_0_0_" target="_blank" rel="noopener noreferrer" aria-label="X">
-                    <img src={`${socialIconBase}/x/111111?viewbox=auto&size=18`} alt="X" className="contact-brand-icon contact-brand-icon-dark" loading="lazy" />
-                    <span>X</span>
-                  </a>
-                </div>
-              </div>
-            </div>
+          <div className="contact-actions">
+            <a className="contact-pill contact-pill-primary" href={`mailto:${contactEmail}`}>
+              <Mail size={18} aria-hidden="true" />
+              <span>Email Me</span>
+            </a>
 
-            <div className="info-item">
-              <div className="info-icon" aria-hidden="true">
-                <MapPin size={22} />
-              </div>
-              <div className="info-text">
-                <h3>Based In</h3>
-                <p>Giza, Egypt</p>
-              </div>
-            </div>
+            <a
+              className="contact-pill"
+              href="https://www.linkedin.com/in/moatazelsayad"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <LinkedinIcon size={18} />
+              <span>LinkedIn</span>
+            </a>
+
+            <a
+              className="contact-pill"
+              href="https://github.com/MoatazElsayad"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GithubIcon size={18} />
+              <span>GitHub</span>
+            </a>
+
+            <a className="contact-pill" href="/Moataz_Badawy_CV.pdf" download>
+              <FileDown size={18} aria-hidden="true" />
+              <span>Résumé</span>
+            </a>
           </div>
-
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="contact-form-header">
-              <p className="contact-form-kicker">Send A Message</p>
-              <h3>Reach out directly</h3>
-              <p>I usually respond to serious messages about internships, collaborations, and technical opportunities.</p>
-            </div>
-
-            {submitted && (
-              <div className="success-message">
-                <CheckCircle2 size={18} />
-                <span>Thank you! I will get back to you soon.</span>
-              </div>
-            )}
-
-            <div className="form-group">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                value={formData.name}
-                onChange={handleChange}
-                className={`form-input ${errors.name ? 'error' : ''}`}
-              />
-              {errors.name && <span className="error-message">{errors.name}</span>}
-            </div>
-
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                value={formData.email}
-                onChange={handleChange}
-                className={`form-input ${errors.email ? 'error' : ''}`}
-              />
-              {errors.email && <span className="error-message">{errors.email}</span>}
-            </div>
-
-            <div className="form-group">
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                rows="5"
-                value={formData.message}
-                onChange={handleChange}
-                className={`form-input ${errors.message ? 'error' : ''}`}
-              ></textarea>
-              {errors.message && <span className="error-message">{errors.message}</span>}
-            </div>
-
-            <button type="submit" className="btn btn-primary" disabled={isSubmitting}>
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
-          </form>
         </div>
       </div>
     </section>

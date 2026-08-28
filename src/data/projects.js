@@ -10,7 +10,54 @@ import losPollos1 from '../assets/projects/los-pollos/1.png'
 import losPollos2 from '../assets/projects/los-pollos/2.png'
 import losPollos3 from '../assets/projects/los-pollos/3.png'
 
+import gladiators1 from '../assets/projects/gladiators/1.png'
+import gladiators2 from '../assets/projects/gladiators/2.png'
+import gladiators3 from '../assets/projects/gladiators/3.png'
+import gladiators4 from '../assets/projects/gladiators/4.png'
+import gladiators5 from '../assets/projects/gladiators/5.png'
+import gladiators6 from '../assets/projects/gladiators/6.png'
+import gladiators7 from '../assets/projects/gladiators/7.png'
+import gladiators8 from '../assets/projects/gladiators/8.png'
+import gladiators9 from '../assets/projects/gladiators/9.png'
+import gladiators10 from '../assets/projects/gladiators/10.png'
+import gladiators11 from '../assets/projects/gladiators/11.png'
+import gladiatorsVideo from '../assets/projects/gladiators/0.mp4'
+
 const projects = [
+  {
+    id: 4,
+    title: 'Battle Arena (Gladiators)',
+    description: 'A fast-paced 2D pixel-art fighting game built with C++ and Qt 6. Connects to a live website with rankings, leaderboards, PS4 controller support, and AI-powered features like an enemy advisor and gameplay coach.',
+    category: 'desktop',
+    image: gladiatorsVideo,
+    gallery: [
+      gladiatorsVideo,
+      gladiators1,
+      gladiators2,
+      gladiators3,
+      gladiators4,
+      gladiators5,
+      gladiators6,
+      gladiators7,
+      gladiators8,
+      gladiators9,
+      gladiators10,
+      gladiators11
+    ],
+    iconName: 'Zap',
+    technologies: ['C++', 'Qt 6', 'CMake'],
+    github: 'https://github.com/MoatazElsayad/battle_arena.git',
+    live: 'https://gladiators-website.vercel.app/',
+    role: 'Team Leader',
+    status: 'Completed',
+    startDate: 'Spring 2026',
+    endDate: 'Spring 2026',
+    highlights: [
+      'Built a fast-paced 2D fighting game with C++ and Qt 6.',
+      'Connected desktop game to a live website with leaderboards.',
+      'Integrated AI-powered gameplay coach and PS4 controller support.'
+    ]
+  },
   {
     id: 1,
     title: 'AI Finance Tracker',

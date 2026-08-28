@@ -5,20 +5,25 @@
   z-index: 1000;
   backdrop-filter: blur(14px);
   background: rgba(8, 17, 31, 0.78);
-  border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+  border-bottom: 1px solid rgba(var(--secondary-color-rgb), 0.08);
   box-shadow: 0 10px 28px rgba(3, 8, 20, 0.18);
+}
+
+html[data-color-scheme="burgundy"] .navbar {
+  background: rgba(20, 7, 13, 0.82);
+  box-shadow: 0 10px 28px rgba(43, 4, 19, 0.22);
 }
 
 html[data-theme="light"] .navbar {
   background: rgba(255, 255, 255, 0.86);
-  border-bottom-color: rgba(37, 99, 235, 0.1);
+  border-bottom-color: rgba(var(--primary-color-rgb), 0.1);
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
 }
 
 .navbar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem 2rem;
+  padding: 1rem clamp(1.25rem, 4vw, 3rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,22 +40,48 @@ html[data-theme="light"] .navbar {
 }
 
 .logo-icon {
-  width: 32px;
-  height: 32px;
-  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.22));
-  transition: all 0.3s ease;
-  animation: logoFloat 3s ease-in-out infinite;
+  width: 2.7rem;
+  height: 2.7rem;
+  color: var(--secondary-color);
+  transition: opacity 0.3s ease;
 }
 
 .navbar-logo:hover .logo-icon {
-  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.35));
-  transform: scale(1.05);
+  opacity: 0.8;
+}
+
+.mb-stroke {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 0;
+}
+
+.mb-logo:not(.logo-static) .mb-m {
+  stroke-dashoffset: 100;
+  animation: mbDraw 0.9s ease forwards;
+}
+
+.mb-logo:not(.logo-static) .mb-b {
+  stroke-dashoffset: 100;
+  animation: mbDraw 0.9s ease 0.22s forwards;
+}
+
+@keyframes mbDraw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mb-stroke {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
 
 .logo-text {
   font-size: 1.3rem;
   font-weight: 800;
-  background: linear-gradient(135deg, #0066ff 0%, #00d4ff 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -58,7 +89,7 @@ html[data-theme="light"] .navbar {
 }
 
 html[data-theme="light"] .logo-text {
-  background: linear-gradient(135deg, #0052cc 0%, #0099ff 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -102,16 +133,17 @@ html[data-theme="light"] .nav-menu a {
   left: 0;
   width: 0;
   height: 2px;
-  background: linear-gradient(90deg, #0066ff, #00d4ff);
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   transition: width 0.3s ease;
-  box-shadow: none;
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a.active {
   color: var(--secondary-color);
 }
 
-.nav-menu a:hover::after {
+.nav-menu a:hover::after,
+.nav-menu a.active::after {
   width: 100%;
 }
 
@@ -122,12 +154,12 @@ html[data-theme="light"] .nav-menu a {
 }
 
 .theme-toggle {
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.18);
+  background: rgba(var(--primary-color-rgb), 0.08);
+  border: 1px solid rgba(var(--secondary-color-rgb), 0.18);
   color: var(--primary-color);
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -136,16 +168,68 @@ html[data-theme="light"] .nav-menu a {
 }
 
 .theme-toggle:hover {
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(var(--secondary-color-rgb), 0.12);
   border-color: var(--primary-color);
-  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.16);
+  box-shadow: 0 8px 18px rgba(var(--primary-color-rgb), 0.16);
   transform: rotate(20deg);
+}
+
+.theme-scheme-picker {
+  height: 40px;
+  padding: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid rgba(var(--secondary-color-rgb), 0.18);
+  background: rgba(var(--primary-color-rgb), 0.08);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: all 0.3s ease;
+}
+
+.scheme-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.25s ease;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.22);
+}
+
+.scheme-swatch-blue {
+  background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%);
+}
+
+.scheme-swatch-burgundy {
+  background: linear-gradient(135deg, #7f1734 0%, #e05a7f 100%);
+}
+
+.scheme-swatch:hover,
+.scheme-swatch:focus-visible {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 18px rgba(var(--primary-color-rgb), 0.12);
+}
+
+.scheme-swatch.active {
+  border-color: rgba(255, 255, 255, 0.86);
+  box-shadow:
+    0 0 0 2px rgba(var(--secondary-color-rgb), 0.36),
+    0 8px 18px rgba(var(--primary-color-rgb), 0.16);
+}
+
+html[data-theme="light"] .scheme-swatch.active {
+  border-color: #ffffff;
+  box-shadow:
+    0 0 0 2px rgba(var(--primary-color-rgb), 0.34),
+    0 8px 18px rgba(15, 23, 42, 0.1);
 }
 
 .hamburger {
   display: none;
-  background: rgba(37, 99, 235, 0.08);
-  border: 1px solid rgba(56, 189, 248, 0.18);
+  background: rgba(var(--primary-color-rgb), 0.08);
+  border: 1px solid rgba(var(--secondary-color-rgb), 0.18);
   color: var(--primary-color);
   width: 40px;
   height: 40px;
@@ -155,7 +239,7 @@ html[data-theme="light"] .nav-menu a {
 }
 
 .hamburger:hover {
-  background: rgba(56, 189, 248, 0.12);
+  background: rgba(var(--secondary-color-rgb), 0.12);
   border-color: var(--primary-color);
 }
 
@@ -171,7 +255,11 @@ html[data-theme="light"] .nav-menu a {
     transition: 0.3s;
     gap: 0;
     backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(56, 189, 248, 0.08);
+    border-top: 1px solid rgba(var(--secondary-color-rgb), 0.08);
+  }
+
+  html[data-color-scheme="burgundy"] .nav-menu {
+    background-color: rgba(20, 7, 13, 0.97);
   }
 
   html[data-theme="light"] .nav-menu {
@@ -185,8 +273,13 @@ html[data-theme="light"] .nav-menu a {
   .nav-menu a {
     display: block;
     padding: 1.5rem;
-    border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+    border-bottom: 1px solid rgba(var(--secondary-color-rgb), 0.08);
     font-size: 1rem;
+  }
+
+  .nav-menu a.active {
+    color: var(--secondary-color);
+    background: rgba(var(--primary-color-rgb), 0.08);
   }
 
   .nav-menu a::after {
@@ -199,5 +292,19 @@ html[data-theme="light"] .nav-menu a {
 
   .navbar-container {
     padding: 0.75rem 1.5rem;
+  }
+
+  .navbar-controls {
+    gap: 0.75rem;
+  }
+
+  .theme-scheme-picker {
+    height: 36px;
+    padding: 0.25rem;
+  }
+
+  .scheme-swatch {
+    width: 24px;
+    height: 24px;
   }
 }
