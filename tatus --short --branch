@@ -1,0 +1,103 @@
+[1mdiff --git a/src/components/Projects.jsx b/src/components/Projects.jsx[m
+[1mindex 2369904f..ffa41540 100644[m
+[1m--- a/src/components/Projects.jsx[m
+[1m+++ b/src/components/Projects.jsx[m
+[36m@@ -198,7 +198,8 @@[m [mconst Projects = () => {[m
+     Boost: { logo: 'boost', color: 'F7901E' },[m
+     JavaScript: { logo: 'javascript', color: 'F7DF1E' },[m
+     HTML5: { logo: 'html5', color: 'E34F26' },[m
+[31m-    CSS3: { logo: 'css', color: '1572B6' }[m
+[32m+[m[32m    CSS3: { logo: 'css', color: '1572B6' },[m
+[32m+[m[32m    'Power BI': { logo: 'powerbi', color: 'F2C811' }[m
+   }[m
+ [m
+   const currentGalleryImage = useMemo(() => {[m
+[36m@@ -369,16 +370,18 @@[m [mconst Projects = () => {[m
+                 </div>[m
+ [m
+                 <div className="project-links">[m
+[31m-                  <a[m
+[31m-                    href={project.github}[m
+[31m-                    target="_blank"[m
+[31m-                    rel="noopener noreferrer"[m
+[31m-                    className="project-link github-link"[m
+[31m-                    onClick={(event) => event.stopPropagation()}[m
+[31m-                  >[m
+[31m-                    <GithubIcon size={15} />[m
+[31m-                    <span> GitHub</span>[m
+[31m-                  </a>[m
+[32m+[m[32m                  {project.github && ([m
+[32m+[m[32m                    <a[m
+[32m+[m[32m                      href={project.github}[m
+[32m+[m[32m                      target="_blank"[m
+[32m+[m[32m                      rel="noopener noreferrer"[m
+[32m+[m[32m                      className="project-link github-link"[m
+[32m+[m[32m                      onClick={(event) => event.stopPropagation()}[m
+[32m+[m[32m                    >[m
+[32m+[m[32m                      <GithubIcon size={15} />[m
+[32m+[m[32m                      <span> GitHub</span>[m
+[32m+[m[32m                    </a>[m
+[32m+[m[32m                  )}[m
+                   {project.live && ([m
+                     <a[m
+                       href={project.live}[m
+[36m@@ -518,10 +521,12 @@[m [mconst Projects = () => {[m
+               <div className="sidebar-section">[m
+                 <h3 className="sidebar-section-title">Links</h3>[m
+                 <div className="sidebar-links">[m
+[31m-                  <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="sidebar-link">[m
+[31m-                    <GithubIcon size={15} />[m
+[31m-                    GitHub[m
+[31m-                  </a>[m
+[32m+[m[32m                  {selectedProject.github && ([m
+[32m+[m[32m                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="sidebar-link">[m
+[32m+[m[32m                      <GithubIcon size={15} />[m
+[32m+[m[32m                      GitHub[m
+[32m+[m[32m                    </a>[m
+[32m+[m[32m                  )}[m
+                   {selectedProject.live && ([m
+                     <a[m
+                       href={selectedProject.live}[m
+[1mdiff --git a/src/data/projects.js b/src/data/projects.js[m
+[1mindex d1c5fc6f..b245f75a 100644[m
+[1m--- a/src/data/projects.js[m
+[1m+++ b/src/data/projects.js[m
+[36m@@ -22,8 +22,38 @@[m [mimport gladiators9 from '../assets/projects/gladiators/9.png'[m
+ import gladiators10 from '../assets/projects/gladiators/10.png'[m
+ import gladiators11 from '../assets/projects/gladiators/11.png'[m
+ import gladiatorsVideo from '../assets/projects/gladiators/0.mp4'[m
+[32m+[m[32mimport safeLa1 from '../assets/projects/powerbi/1.png'[m
+[32m+[m[32mimport safeLa2 from '../assets/projects/powerbi/2.png'[m
+[32m+[m[32mimport safeLa3 from '../assets/projects/powerbi/3.png'[m
+[32m+[m[32mimport safeLa4 from '../assets/projects/powerbi/4.png'[m
+[32m+[m[32mimport safeLaVideo from '../assets/projects/powerbi/0.mp4'[m
+ [m
+ const projects = [[m
+[32m+[m[32m  {[m
+[32m+[m[32m    id: 5,[m
+[32m+[m[32m    title: 'SafeLA',[m
+[32m+[m[32m    description: 'An interactive 4-page Power BI dashboard analyzing over 1 million reported crime incidents in Los Angeles from 2020 to 2025, sourced from LAPD open data. It covers crime hotspots, time-based trends, victim demographics, and weapon involvement with a geospatial map and dynamic filters.',[m
+[32m+[m[32m    category: 'data-analytics',[m
+[32m+[m[32m    image: safeLaVideo,[m
+[32m+[m[32m    gallery: [[m
+[32m+[m[32m      safeLaVideo,[m
+[32m+[m[32m      safeLa1,[m
+[32m+[m[32m      safeLa2,[m
+[32m+[m[32m      safeLa3,[m
+[32m+[m[32m      safeLa4[m
+[32m+[m[32m    ],[m
+[32m+[m[32m    iconName: 'BarChart3',[m
+[32m+[m[32m    technologies: ['Power BI', 'DAX', 'Power Query (M)'],[m
+[32m+[m[32m    role: 'Solo Project',[m
+[32m+[m[32m    status: 'Completed',[m
+[32m+[m[32m    startDate: 'Summer 2026',[m
+[32m+[m[32m    endDate: 'Summer 2026',[m
+[32m+[m[32m    highlights: [[m
+[32m+[m[32m      'Built a 4-page interactive dashboard analyzing 1M+ LAPD crime records from 2020 to 2025.',[m
+[32m+[m[32m      'Designed geospatial and time-series visualizations to surface hotspots, seasonal trends, and hourly and weekday patterns.',[m
+[32m+[m[32m      'Modeled victim demographics and weapon involvement with DAX measures and cross-filtering across report pages.'[m
+[32m+[m[32m    ][m
+[32m+[m[32m  },[m
+   {[m
+     id: 4,[m
+     title: 'Battle Arena (Gladiators)',[m

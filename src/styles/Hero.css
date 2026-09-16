@@ -615,4 +615,10 @@ html[data-theme="light"] .hero-social .social-brand-icon[src*="linkedin"] {
     padding: 1rem 2rem;
     font-size: 0.95rem;
   }
+
+  .hero-edu-tag {
+    white-space: normal;
+    letter-spacing: 0.1em;
+    line-height: 1.5;
+  }
 }
