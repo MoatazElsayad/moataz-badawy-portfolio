@@ -30,31 +30,6 @@ import safeLaVideo from '../assets/projects/powerbi/0.mp4'
 
 const projects = [
   {
-    id: 5,
-    title: 'SafeLA',
-    description: 'An interactive 4-page Power BI dashboard analyzing over 1 million reported crime incidents in Los Angeles from 2020 to 2025, sourced from LAPD open data. It covers crime hotspots, time-based trends, victim demographics, and weapon involvement with a geospatial map and dynamic filters.',
-    category: 'data-analytics',
-    image: safeLaVideo,
-    gallery: [
-      safeLaVideo,
-      safeLa1,
-      safeLa2,
-      safeLa3,
-      safeLa4
-    ],
-    iconName: 'BarChart3',
-    technologies: ['Power BI', 'DAX', 'Power Query (M)'],
-    role: 'Solo Project',
-    status: 'Completed',
-    startDate: 'Summer 2026',
-    endDate: 'Summer 2026',
-    highlights: [
-      'Built a 4-page interactive dashboard analyzing 1M+ LAPD crime records from 2020 to 2025.',
-      'Designed geospatial and time-series visualizations to surface hotspots, seasonal trends, and hourly and weekday patterns.',
-      'Modeled victim demographics and weapon involvement with DAX measures and cross-filtering across report pages.'
-    ]
-  },
-  {
     id: 4,
     title: 'Battle Arena (Gladiators)',
     description: 'A fast-paced 2D pixel-art fighting game built with C++ and Qt 6. Connects to a live website with rankings, leaderboards, PS4 controller support, and AI-powered features like an enemy advisor and gameplay coach.',
@@ -138,6 +113,32 @@ const projects = [
       'Used ExchangeRate-API for live exchange-rate conversion.',
       'Added authentication, favorites, conversion history, and CSV export.',
       'Designed the app as a practical and easy-to-use financial tool.'
+    ]
+  },
+  {
+    id: 5,
+    title: 'SafeLA',
+    description: 'An interactive 4-page Power BI dashboard analyzing over 1 million reported crime incidents in Los Angeles from 2020 to 2025, sourced from LAPD open data. It covers crime hotspots, time-based trends, victim demographics, and weapon involvement with a geospatial map and dynamic filters.',
+    category: 'data-analytics',
+    image: safeLaVideo,
+    gallery: [
+      safeLaVideo,
+      safeLa1,
+      safeLa2,
+      safeLa3,
+      safeLa4
+    ],
+    videoWatchUrl: safeLaVideo,
+    iconName: 'BarChart3',
+    technologies: ['Power BI', 'DAX', 'Power Query (M)'],
+    role: 'Solo Project',
+    status: 'Completed',
+    startDate: 'Summer 2026',
+    endDate: 'Summer 2026',
+    highlights: [
+      'Built a 4-page interactive dashboard analyzing 1M+ LAPD crime records from 2020 to 2025.',
+      'Designed geospatial and time-series visualizations to surface hotspots, seasonal trends, and hourly and weekday patterns.',
+      'Modeled victim demographics and weapon involvement with DAX measures and cross-filtering across report pages.'
     ]
   },
   {

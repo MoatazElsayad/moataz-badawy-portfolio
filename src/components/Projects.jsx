@@ -258,6 +258,18 @@ const Projects = () => {
     )
   }
 
+  const renderFantasyFallback = (alt) => (
+    <div className="fantasy-media-fallback" aria-label={`${alt} preview unavailable`}>
+      <span className="fantasy-stars" aria-hidden="true" />
+      <span className="fantasy-moon" aria-hidden="true" />
+      <span className="fantasy-wisp fantasy-wisp-one" aria-hidden="true" />
+      <span className="fantasy-wisp fantasy-wisp-two" aria-hidden="true" />
+      <span className="fantasy-horizon" aria-hidden="true" />
+      <span className="fantasy-fallback-icon" aria-hidden="true">{getIcon('BarChart3')}</span>
+      <span className="fantasy-fallback-label">{alt}</span>
+    </div>
+  )
+
   const renderMedia = (src, alt, className) => {
     if (src && src.endsWith('.mp4')) {
       return (
@@ -273,19 +285,18 @@ const Projects = () => {
       )
     }
     return (
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        onError={(event) => {
-          event.target.style.display = 'none'
-          if (event.target.nextElementSibling && event.target.nextElementSibling.classList.contains('project-icon-fallback')) {
-            event.target.nextElementSibling.style.display = 'flex'
-          } else if (event.target.parentElement && event.target.parentElement.classList.contains('sidebar-main-image')) {
-            event.target.parentElement.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;width:100%;background:linear-gradient(135deg, rgba(var(--primary-color-rgb), 0.1), rgba(var(--secondary-color-rgb), 0.1))">${alt}</div>`
-          }
-        }}
-      />
+      <>
+        <img
+          src={src}
+          alt={alt}
+          className={className}
+          onError={(event) => {
+            event.currentTarget.style.display = 'none'
+            event.currentTarget.parentElement?.classList.add('media-fallback-visible')
+          }}
+        />
+        {renderFantasyFallback(alt)}
+      </>
     )
   }
 
@@ -347,9 +358,6 @@ const Projects = () => {
                     <span>Watch demo</span>
                   </div>
                 )}
-                <div className="project-icon-fallback" style={{ fontSize: '2rem', display: 'none', alignItems: 'center', justifyContent: 'center', height: '120px', width: '100%' }}>
-                  {getIcon(project.iconName)}
-                </div>
               </div>
 
               <div className="project-content">
@@ -391,6 +399,18 @@ const Projects = () => {
                       onClick={(event) => event.stopPropagation()}
                     >
                       <span>Visit Website</span>
+                    </a>
+                  )}
+                  {project.videoWatchUrl && (
+                    <a
+                      href={project.videoWatchUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link live-link"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      <PlayCircle size={15} />
+                      <span>Watch Demo</span>
                     </a>
                   )}
                 </div>
