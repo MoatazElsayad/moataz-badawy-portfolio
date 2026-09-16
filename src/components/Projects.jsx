@@ -198,7 +198,8 @@ const Projects = () => {
     Boost: { logo: 'boost', color: 'F7901E' },
     JavaScript: { logo: 'javascript', color: 'F7DF1E' },
     HTML5: { logo: 'html5', color: 'E34F26' },
-    CSS3: { logo: 'css', color: '1572B6' }
+    CSS3: { logo: 'css', color: '1572B6' },
+    'Power BI': { logo: 'powerbi', color: 'F2C811' }
   }
 
   const currentGalleryImage = useMemo(() => {
@@ -369,16 +370,18 @@ const Projects = () => {
                 </div>
 
                 <div className="project-links">
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link github-link"
-                    onClick={(event) => event.stopPropagation()}
-                  >
-                    <GithubIcon size={15} />
-                    <span> GitHub</span>
-                  </a>
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="project-link github-link"
+                      onClick={(event) => event.stopPropagation()}
+                    >
+                      <GithubIcon size={15} />
+                      <span> GitHub</span>
+                    </a>
+                  )}
                   {project.live && (
                     <a
                       href={project.live}
@@ -518,10 +521,12 @@ const Projects = () => {
               <div className="sidebar-section">
                 <h3 className="sidebar-section-title">Links</h3>
                 <div className="sidebar-links">
-                  <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="sidebar-link">
-                    <GithubIcon size={15} />
-                    GitHub
-                  </a>
+                  {selectedProject.github && (
+                    <a href={selectedProject.github} target="_blank" rel="noopener noreferrer" className="sidebar-link">
+                      <GithubIcon size={15} />
+                      GitHub
+                    </a>
+                  )}
                   {selectedProject.live && (
                     <a
                       href={selectedProject.live}
