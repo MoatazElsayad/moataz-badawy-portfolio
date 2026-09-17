@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { BarChart3, Thermometer, Monitor, Bot, Puzzle, Zap, X, ChevronLeft, ChevronRight, PlayCircle, Globe } from 'lucide-react'
 import projects from '../data/projects'
+import powerBiLogo from '../assets/logos/powerbi.svg'
 
 const GithubIcon = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -199,7 +200,7 @@ const Projects = () => {
     JavaScript: { logo: 'javascript', color: 'F7DF1E' },
     HTML5: { logo: 'html5', color: 'E34F26' },
     CSS3: { logo: 'css', color: '1572B6' },
-    'Power BI': { logo: 'powerbi', color: 'F2C811' }
+    'Power BI': { logo: 'powerbi', color: 'F2C811', img: powerBiLogo }
   }
 
   const currentGalleryImage = useMemo(() => {
@@ -245,7 +246,14 @@ const Projects = () => {
 
     return (
       <span className={className}>
-        {brand && (
+        {brand?.img ? (
+          <img
+            src={brand.img}
+            alt={`${tech} logo`}
+            className="tech-logo tech-logo-local"
+            loading="lazy"
+          />
+        ) : brand && (
           <img
             src={`${brandIconBase}/${brand.logo}/${brand.color}?viewbox=auto&size=20`}
             alt={`${tech} logo`}
