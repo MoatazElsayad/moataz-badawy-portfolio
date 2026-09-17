@@ -227,22 +227,26 @@ const Experience = () => {
                 <X size={20} />
               </button>
 
-              <header className="exp-detail-header">
-                <span className="timeline-type">{selectedItem.type}</span>
-                <h2>{selectedItem.title}</h2>
-                <p>{selectedItem.organization}</p>
-                <span className="exp-detail-period">{selectedItem.period}</span>
-              </header>
+              <div className="exp-detail-hero">
+                <div className="exp-detail-image">
+                  {selectedItem.details.image ? (
+                    <img src={selectedItem.details.image} alt={`${selectedItem.organization} campus`} />
+                  ) : (
+                    <div className="exp-detail-image-placeholder">
+                      <ImagePlus size={26} />
+                      <span>University photo coming soon</span>
+                    </div>
+                  )}
+                </div>
 
-              <div className="exp-detail-image">
-                {selectedItem.details.image ? (
-                  <img src={selectedItem.details.image} alt={`${selectedItem.organization} campus`} />
-                ) : (
-                  <div className="exp-detail-image-placeholder">
-                    <ImagePlus size={26} />
-                    <span>University photo coming soon</span>
-                  </div>
-                )}
+                <div className="exp-detail-hero-shade" aria-hidden="true" />
+
+                <header className="exp-detail-header">
+                  <span className="timeline-type">{selectedItem.type}</span>
+                  <h2>{selectedItem.title}</h2>
+                  <p>{selectedItem.organization}</p>
+                  <span className="exp-detail-period">{selectedItem.period}</span>
+                </header>
               </div>
 
               <div className="exp-detail-body">

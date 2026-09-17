@@ -441,7 +441,7 @@ html[data-theme="dark"] .exp-detail-sidebar {
   margin-top: 0.55rem;
   font-size: clamp(1.5rem, 2.6vw, 2rem);
   font-weight: 800;
-  color: var(--heading-color);
+  color: #fff;
   letter-spacing: -0.02em;
 }
 
@@ -449,7 +449,7 @@ html[data-theme="dark"] .exp-detail-sidebar {
   margin-top: 0.25rem;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--secondary-color);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .exp-detail-period {
@@ -459,12 +459,12 @@ html[data-theme="dark"] .exp-detail-sidebar {
   border-radius: 999px;
   font-size: 0.82rem;
   font-weight: 700;
-  color: var(--primary-color);
-  background: rgba(var(--primary-color-rgb), 0.09);
-  border: 1px solid rgba(var(--primary-color-rgb), 0.18);
+  color: #fff;
+  background: rgba(9, 18, 38, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.34);
 }
 
-.exp-detail-image {
+.exp-detail-hero {
   position: relative;
   width: calc(100% + 4.4rem);
   margin: 1.7rem -2.2rem 0;
@@ -473,12 +473,34 @@ html[data-theme="dark"] .exp-detail-sidebar {
   border-bottom: 1px solid rgba(var(--primary-color-rgb), 0.12);
 }
 
+.exp-detail-image {
+  position: absolute;
+  inset: 0;
+}
+
 .exp-detail-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 45%;
   display: block;
+}
+
+.exp-detail-hero-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(180deg, rgba(5, 13, 32, 0.76) 0%, rgba(5, 13, 32, 0.32) 42%, rgba(5, 13, 32, 0.7) 100%),
+    linear-gradient(90deg, rgba(5, 13, 32, 0.62), transparent 75%);
+  pointer-events: none;
+}
+
+.exp-detail-header {
+  position: absolute;
+  inset: auto 2.2rem 2.2rem;
+  z-index: 2;
+  max-width: 30rem;
 }
 
 .exp-detail-image-placeholder {
@@ -557,7 +579,7 @@ html[data-theme="dark"] .exp-detail-sidebar {
 }
 
 @media (max-width: 1024px) {
-  .exp-detail-image {
+  .exp-detail-hero {
     width: calc(100% + 3.2rem);
     margin: 1.5rem -1.6rem 0;
   }
@@ -575,7 +597,7 @@ html[data-theme="dark"] .exp-detail-sidebar {
     padding: 1.5rem 1.2rem 2rem;
   }
 
-  .exp-detail-image {
+  .exp-detail-hero {
     width: calc(100% + 2.4rem);
     margin: 1.3rem -1.2rem 0;
     height: clamp(300px, 50vh, 440px);
